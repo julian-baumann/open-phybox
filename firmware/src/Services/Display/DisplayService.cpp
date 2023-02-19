@@ -15,10 +15,8 @@ DisplayService::DisplayService()
     TftBackend.setTextSize(2);
 
     // Turn backlight on
-    if (TFT_BL > 0) {
-        pinMode(TFT_BL, OUTPUT);
-        digitalWrite(TFT_BL, TFT_BACKLIGHT_ON);
-    }
+    pinMode(TFT_BL, OUTPUT);
+    digitalWrite(TFT_BL, TFT_BACKLIGHT_ON);
 }
 
 void DisplayService::ShowSplashScreen()

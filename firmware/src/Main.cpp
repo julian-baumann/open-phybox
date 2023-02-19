@@ -4,6 +4,7 @@
 void setup()
 {
     Serial.begin(115200);
+
     m_displayService = new DisplayService();
     m_measurementService = new MeasurementService();
     m_bleService = new BluetoothLowEnergyStack();
@@ -17,11 +18,17 @@ void setup()
     Serial.println("ESP is ready.");
 }
 
+unsigned long lastRecordedMilliseconds;
+
 void loop()
 {
-    double voltage = m_measurementService->GetVoltageMeasurement(36);
-    m_bleMeasurementService->UpdateValue(voltage);
-    m_displayService->UpdateVoltageMeasurement(voltage);
+    unsigned long currentMilliseconds = millis();
 
-    delay(100);
+    if (currentMilliseconds - lastRecordedMilliseconds >= 1000)
+    {
+        lastRecordedMilliseconds = currentMilliseconds;
+        double voltage = m_measurementService->GetVoltageMeasurement(36);
+        m_bleMeasurementService->UpdateValue(voltage);
+        m_displayService->UpdateVoltageMeasurement(voltage);
+    }
 }

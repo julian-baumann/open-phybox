@@ -8,11 +8,11 @@
 class BleMeasurementService : public BleService, public BleCharacteristic
 {
 public:
-    BleMeasurementService(BluetoothLowEnergyStack& bleStack);
+    explicit BleMeasurementService(BluetoothLowEnergyStack& bleStack);
 
     NimBLEUUID GetUUID() override;
 
-    void UpdateValue(double value);
+    void UpdateValue(unsigned long currentMilliseconds, double value);
 
 private:
     NimBLEService& m_service;

@@ -6,3 +6,8 @@
 .DS_Store
 cmake-build-esp32dev
 cmake-build-debug
+xcuserdata/
+# Packages/
+# Package.pins
+# Package.resolved
+# *.xcodeproj

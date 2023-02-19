@@ -19,6 +19,16 @@ NimBLEUUID BleMeasurementService::GetUUID()
     return m_service.getUUID();
 }
 
+void BleMeasurementService::UpdateValue(unsigned long currentMilliseconds, double value)
+{
+    m_measurement_characteristic.setValue(value);
+
+    if (m_measurement_characteristic.getSubscribedCount() > 0)
+    {
+        m_measurement_characteristic.notify();
+    }
+}
+
 void BleMeasurementService::onRead(NimBLECharacteristic* characteristic)
 {
     Serial.print(characteristic->getUUID().toString().c_str());
@@ -46,6 +56,7 @@ void BleMeasurementService::onStatus(NimBLECharacteristic* characteristic, NimBL
     str += code;
     str += ", ";
     str += NimBLEUtils::returnCodeToString(code);
+
     Serial.println(str);
 }
 
@@ -74,14 +85,4 @@ void BleMeasurementService::onSubscribe(NimBLECharacteristic* characteristic, bl
     str += std::string(characteristic->getUUID()).c_str();
 
     Serial.println(str);
-}
-
-void BleMeasurementService::UpdateValue(double value)
-{
-    m_measurement_characteristic.setValue(String(value));
-
-    if (m_measurement_characteristic.getSubscribedCount() > 0)
-    {
-        m_measurement_characteristic.notify();
-    }
 }
