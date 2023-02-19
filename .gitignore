@@ -4,3 +4,5 @@
 .vscode/launch.json
 .vscode/ipch
 .DS_Store
+cmake-build-esp32dev
+cmake-build-debug

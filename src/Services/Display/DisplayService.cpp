@@ -1,17 +1,18 @@
 #include "DisplayService.hpp"
 
+static TFT_eSPI TftBackend = TFT_eSPI();
+
 DisplayService::DisplayService()
 {
     TftBackend.init();
-    TftBackend.setRotation(1);
+    TftBackend.setRotation(3);
     Width = TftBackend.width();
     Height = TftBackend.height();
     TftBackend.fillScreen(TFT_BLACK);
-    TftBackend.setTextSize(2);
-    TftBackend.setTextColor(TFT_WHITE);
+    TftBackend.setTextColor(TFT_WHITE, TFT_BLACK);
     TftBackend.setCursor(0, 0);
     TftBackend.setTextDatum(MC_DATUM);
-    TftBackend.setTextSize(1);
+    TftBackend.setTextSize(2);
 
     // Turn backlight on
     if (TFT_BL > 0) {
@@ -22,6 +23,12 @@ DisplayService::DisplayService()
 
 void DisplayService::ShowSplashScreen()
 {
+}
+
+void DisplayService::UpdateVoltageMeasurement(double measurement)
+{
+    SetCursor(10, 10);
+    Print("Voltage: " + String(measurement));
 }
 
 void DisplayService::SetCursor(int16_t x, int16_t y)
@@ -37,4 +44,9 @@ void DisplayService::SetTextSize(uint8_t size)
 void DisplayService::Print(String text)
 {
     TftBackend.print(text);
+}
+
+void DisplayService::Clear()
+{
+    TftBackend.fillScreen(TFT_BLACK);
 }

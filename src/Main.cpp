@@ -1,19 +1,27 @@
 #include <Arduino.h>
 #include "Main.hpp"
 
-void setup() {
+void setup()
+{
     Serial.begin(115200);
-    _displayService = new DisplayService();
-    Serial.println("Hello, World");
-    Serial.println("Height: " + String(_displayService->Height) + ", Width: " + String(_displayService->Width));
+    m_displayService = new DisplayService();
+    m_measurementService = new MeasurementService();
+    m_bleService = new BluetoothLowEnergyStack();
 
-    uint8_t x = _displayService->Width / 2 - 20;
-    uint8_t y = _displayService->Height / 2 - 10;
-    Serial.println("x: " + String(x) + ", y: " + String(y));
+    m_bleMeasurementService = new BleMeasurementService(*m_bleService);
+    m_bleService->AddService(*m_bleMeasurementService);
 
-    _displayService->SetCursor(x, y);
-    _displayService->Print("Hello, Universe!");
+    m_bleService->StartAdvertising();
+
+    pinMode(36, INPUT);
+    Serial.println("ESP is ready.");
 }
 
-void loop() {
+void loop()
+{
+    double voltage = m_measurementService->GetVoltageMeasurement(36);
+    m_bleMeasurementService->UpdateValue(voltage);
+    m_displayService->UpdateVoltageMeasurement(voltage);
+
+    delay(100);
 }
