@@ -10,12 +10,10 @@ import Foundation
 struct MeasurementDatapoint: Identifiable {
     var id = UUID()
     var voltageMeasurement: Double
-    var time: Int
+    var time: UInt32
 }
 
 class MeasurementData: ObservableObject {
     @Published var latestReading: Double = 0.0
-    @Published var data: [MeasurementDatapoint] = [
-        .init(voltageMeasurement: 1.2, time: 0),
-        .init(voltageMeasurement: 1.3, time: 1)]
+    @Published var data: [MeasurementDatapoint] = []
 }

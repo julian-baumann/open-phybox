@@ -18,22 +18,12 @@ struct ContentView: View {
                     Chart(peripheralCommunication.currentMeasurement.data) { dataPoint in
                         Plot {
                             LineMark(
-                                x: .value("time", dataPoint.time),
-                                y: .value("voltage", dataPoint.voltageMeasurement)
+                                x: .value("Time", dataPoint.time),
+                                y: .value("Voltage", dataPoint.voltageMeasurement)
                             )
                         }
                     }
                     .padding()
-                    
-//                    Chart {
-//                        ForEach(peripheralCommunication.currentMeasurement.data) { dataPoint in
-//                            LineMark(
-//                                x: .value("time", dataPoint.time),
-//                                y: .value("voltage", dataPoint.voltageMeasurement)
-//                            )
-//                        }
-//                    }
-//                    .padding()
                     
                     Text(String(peripheralCommunication.currentMeasurement.latestReading))
                 }

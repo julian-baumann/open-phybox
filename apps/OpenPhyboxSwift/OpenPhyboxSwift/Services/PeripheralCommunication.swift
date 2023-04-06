@@ -8,16 +8,6 @@
 import Foundation
 import CoreBluetooth
 
-extension FloatingPoint {
-    init?(_ bytes: ArraySlice<UInt8>) {
-        guard bytes.count == MemoryLayout<Self>.size else { return nil }
-
-        self = bytes.withUnsafeBytes {
-            return $0.load(fromByteOffset: 0, as: Self.self)
-        }
-    }
-}
-
 class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     public static let shared = PeripheralCommunication()
 
@@ -100,20 +90,23 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
         }
         
         let rawByteArray = [UInt8](rawValue)
-        let chunked = rawByteArray.chunked(into: 8)
+        let chunked = rawByteArray.chunked(into: 12)
         
         for chunk in chunked {
-            let time = chunk[...3]
-            let measurement = Double(chunk[3...])
-            print(measurement);
+            let time = UInt32(Array(chunk[...3]))
+            let measurement = Double(Array(chunk[4...]))
+
+            guard
+                let measurement = measurement,
+                let time = time else {
+                continue;
+            }
+            
+            currentMeasurement.data.append(.init(voltageMeasurement: measurement, time: time))
+            currentMeasurement.latestReading = measurement
         }
-        
-//        let time = rawValue[...2]
-//        let value = rawValue[10...]
-        
-//        currentMeasurement.latestReading = value
-//        currentMeasurement.data.append(.init(voltageMeasurement: value, time: count))
-//        currentMeasurement = currentMeasurement
+
+        currentMeasurement = currentMeasurement
         count += 1
     }
     

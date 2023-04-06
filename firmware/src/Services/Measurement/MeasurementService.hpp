@@ -13,7 +13,7 @@ public:
     void MeasureCurrentVoltage();
 
 private:
-    hw_timer_t &m_measurementTimer;
+    // hw_timer_t &m_measurementTimer;
 
     static void onTimer();
 };
