@@ -8,6 +8,16 @@
 import Foundation
 import CoreBluetooth
 
+extension FloatingPoint {
+    init?(_ bytes: ArraySlice<UInt8>) {
+        guard bytes.count == MemoryLayout<Self>.size else { return nil }
+
+        self = bytes.withUnsafeBytes {
+            return $0.load(fromByteOffset: 0, as: Self.self)
+        }
+    }
+}
+
 class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     public static let shared = PeripheralCommunication()
 
@@ -15,11 +25,12 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
     private let measurementCharacteristicUUID = CBUUID(string: "0D279FAD-980C-4C50-8FFF-3F3C266251D0")
     private var centralManager: CBCentralManager!
     private var peripheralESP: CBPeripheral?
+    private var count = 0
     
     @Published public var isPoweredOn = false
     @Published public var connected = false
     @Published public var connecting = false
-    @Published public var currentMeasurementValue = ""
+    @Published public var currentMeasurement = MeasurementData()
     @Published public var connectedPeripheral: CBPeripheral?
     
     override init() {
@@ -84,12 +95,26 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard characteristic == characteristic,
-              let characteristicValue = characteristic.value,
-              let value = String(data: characteristicValue, encoding: String.Encoding.utf8) else {
+              let rawValue = characteristic.value else {
             return
         }
         
-        currentMeasurementValue = value
+        let rawByteArray = [UInt8](rawValue)
+        let chunked = rawByteArray.chunked(into: 8)
+        
+        for chunk in chunked {
+            let time = chunk[...3]
+            let measurement = Double(chunk[3...])
+            print(measurement);
+        }
+        
+//        let time = rawValue[...2]
+//        let value = rawValue[10...]
+        
+//        currentMeasurement.latestReading = value
+//        currentMeasurement.data.append(.init(voltageMeasurement: value, time: count))
+//        currentMeasurement = currentMeasurement
+        count += 1
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {

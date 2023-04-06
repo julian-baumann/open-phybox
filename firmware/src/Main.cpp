@@ -1,6 +1,15 @@
 #include <Arduino.h>
 #include "Main.hpp"
 
+hw_timer_t *measurementTimer;
+
+void onTimer()
+{
+    // auto currentPartialMeasurement = m_measurementService->GetCurrentPartialMeasurement();
+    // m_bleMeasurementService->UpdateValue(currentPartialMeasurement);
+    //    m_displayService->UpdateVoltageMeasurement(voltage);
+}
+
 void setup()
 {
     Serial.begin(115200);
@@ -16,19 +25,31 @@ void setup()
 
     pinMode(36, INPUT);
     Serial.println("ESP is ready.");
-}
 
-unsigned long lastRecordedMilliseconds;
+    // measurementTimer = timerBegin(0, 80, true);
+    // timerAttachInterrupt(measurementTimer, &onTimer, true);
+    // timerAlarmWrite(measurementTimer, 1000, true);
+    // timerAlarmEnable(measurementTimer);
+
+    m_displayService->ShowSplashScreen();
+}
 
 void loop()
 {
     unsigned long currentMilliseconds = millis();
 
-    if (currentMilliseconds - lastRecordedMilliseconds >= 1000)
+    if ((currentMilliseconds % 10) == 0)
     {
-        lastRecordedMilliseconds = currentMilliseconds;
-        double voltage = m_measurementService->GetVoltageMeasurement(36);
-        m_bleMeasurementService->UpdateValue(voltage);
-        m_displayService->UpdateVoltageMeasurement(voltage);
+        m_measurementService->MeasureCurrentVoltage();
+        //    m_bleMeasurementService->UpdateValue(voltage);
+        // m_displayService->UpdateVoltageMeasurement(voltage);
+    }
+
+    if ((currentMilliseconds % 1000) == 0)
+    {
+        auto currentPartialMeasurement = m_measurementService->GetCurrentPartialMeasurement();
+        m_bleMeasurementService->UpdateValue(currentPartialMeasurement);
+        //    m_bleMeasurementService->UpdateValue(voltage);
+        // m_displayService->UpdateVoltageMeasurement(voltage);
     }
 }

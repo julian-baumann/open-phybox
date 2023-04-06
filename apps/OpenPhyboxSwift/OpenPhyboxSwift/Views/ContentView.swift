@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct ContentView: View {
     @StateObject var peripheralCommunication = PeripheralCommunication()
@@ -14,7 +15,27 @@ struct ContentView: View {
         NavigationStack {
             if (peripheralCommunication.isPoweredOn) {
                 VStack {
-                    Text(peripheralCommunication.currentMeasurementValue)
+                    Chart(peripheralCommunication.currentMeasurement.data) { dataPoint in
+                        Plot {
+                            LineMark(
+                                x: .value("time", dataPoint.time),
+                                y: .value("voltage", dataPoint.voltageMeasurement)
+                            )
+                        }
+                    }
+                    .padding()
+                    
+//                    Chart {
+//                        ForEach(peripheralCommunication.currentMeasurement.data) { dataPoint in
+//                            LineMark(
+//                                x: .value("time", dataPoint.time),
+//                                y: .value("voltage", dataPoint.voltageMeasurement)
+//                            )
+//                        }
+//                    }
+//                    .padding()
+                    
+                    Text(String(peripheralCommunication.currentMeasurement.latestReading))
                 }
                 .padding()
                 .sheet(isPresented: !$peripheralCommunication.connected) {

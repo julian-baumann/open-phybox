@@ -1,0 +1,71 @@
+%-----------------------------------------------------------------------------------------
+% Author of this template:
+% Stefan Macke (http://fachinformatiker-anwendungsentwicklung.net)
+% Template: http://fiae.link/LaTeXVorlageFIAE
+%
+% License: Creative Commons 4.0 Attribution - Sharing under the same conditions
+% -----------------------------------------------------------------------------------------
+
+
+\documentclass[
+	ngerman,
+	toc=listof,
+	toc=bibliography,
+	footnotes=multiple,
+	parskip=half,
+	numbers=noendperiod
+]{scrartcl}
+\pdfminorversion=5
+\usepackage[utf8]{inputenc}
+\usepackage{pmboxdraw}
+\makeatletter
+\def\verbatim@font{\linespread{0.8}\normalfont\ttfamily}
+\makeatother
+
+\input{Meta}
+\input{Core/Packages}
+\input{Core/Commands}
+\input{Core/PageStyle}
+
+
+\begin{document}
+
+\phantomsection
+\thispagestyle{plain}
+\pdfbookmark[1]{Cover}{cover}
+\input{Cover}
+
+\phantomsection
+\thispagestyle{empty}
+\input{StatutoryDeclaration}
+\cleardoublepage
+
+
+\phantomsection
+\thispagestyle{empty}
+\input{OpenSource}
+\cleardoublepage
+
+
+\pagenumbering{Roman}
+\pdfbookmark[1]{Inhaltsverzeichnis}{TableOfContents}
+\tableofcontents
+
+\phantomsection
+\listoffigures
+\cleardoublepage
+
+\newcommand{\abkvz}{Glossar}
+\renewcommand{\nomname}{\abkvz}
+\section*{\abkvz}
+\markboth{\abkvz}{\abkvz}
+\addcontentsline{toc}{section}{\abkvz}
+\input{Abbreviations}
+\clearpage
+
+% ------- Content -------
+\pagenumbering{arabic}
+\input{Content.tex}
+
+
+\end{document}

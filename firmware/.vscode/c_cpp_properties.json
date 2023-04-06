@@ -8,10 +8,13 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "/Users/turingmachine/Projects/open-phybox/include",
-                "/Users/turingmachine/Projects/open-phybox/src",
-                "/Users/turingmachine/Projects/open-phybox/.pio/libdeps/esp32dev/NimBLE-Arduino/src",
-                "/Users/turingmachine/Projects/open-phybox/.pio/libdeps/esp32dev/TFT_eSPI",
+                "/Users/turingmachine/Projects/open-phybox/firmware/include",
+                "/Users/turingmachine/Projects/open-phybox/firmware/src",
+                "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/Adafruit ADS1X15",
+                "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/Adafruit BusIO",
+                "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
+                "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/NimBLE-Arduino/src",
+                "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/TFT_eSPI",
                 "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src",
                 "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                 "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
@@ -235,16 +238,18 @@
                 "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                 "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
-                "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "/Users/turingmachine/Projects/open-phybox/include",
-                    "/Users/turingmachine/Projects/open-phybox/src",
-                    "/Users/turingmachine/Projects/open-phybox/.pio/libdeps/esp32dev/NimBLE-Arduino/src",
-                    "/Users/turingmachine/Projects/open-phybox/.pio/libdeps/esp32dev/TFT_eSPI",
+                    "/Users/turingmachine/Projects/open-phybox/firmware/include",
+                    "/Users/turingmachine/Projects/open-phybox/firmware/src",
+                    "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/Adafruit ADS1X15",
+                    "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/Adafruit BusIO",
+                    "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
+                    "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/NimBLE-Arduino/src",
+                    "/Users/turingmachine/Projects/open-phybox/firmware/.pio/libdeps/esp32dev/TFT_eSPI",
                     "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src",
                     "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                     "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
@@ -468,7 +473,6 @@
                     "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                     "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
-                    "/Users/turingmachine/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     ""
                 ]
             },

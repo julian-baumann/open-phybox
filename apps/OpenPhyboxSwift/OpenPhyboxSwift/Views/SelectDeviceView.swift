@@ -17,13 +17,14 @@ struct SelectDeviceView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Spacer()
+                
                 ZStack {
                     Circle().fill(color.opacity(0.25)).frame(width: 200, height: 200).scaleEffect(self.animate ? 1 : 0)
                     Circle().fill(color.opacity(0.35)).frame(width: 150, height: 150).scaleEffect(self.animate ? 1 : 0)
                     Circle().fill(color.opacity(0.45)).frame(width: 100, height: 100).scaleEffect(self.animate ? 1 : 0)
                     Circle().fill(color).frame(width: 50, height: 50)
                 }
-                .padding(.top, 20)
                 .onAppear { self.animate.toggle() }
                 .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: self.animate)
                 

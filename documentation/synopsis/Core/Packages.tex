@@ -1,0 +1,75 @@
+% !TEX root = ../PhyboxReverseEngineering.tex
+\usepackage{babel}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{relsize}
+
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{lscape}
+\newcolumntype{w}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
+
+\usepackage{xhfill}
+\usepackage[dvips,final]{graphicx}
+\usepackage{graphics}
+\usepackage{floatflt}
+\graphicspath{{Graphics/}}
+
+\usepackage[titles]{tocloft}
+\usepackage{amsmath,amsfonts}
+\usepackage{enumitem}
+\usepackage{xspace}
+
+\usepackage{makeidx}
+\usepackage[printonlyused]{acronym}
+
+\usepackage{setspace}
+\usepackage{geometry}
+
+\usepackage[intoc]{nomencl}
+\let\abbrev\nomenclature
+\renewcommand{\nomname}{Abkürzungsverzeichnis}
+\setlength{\nomlabelwidth}{.25\hsize}
+\renewcommand{\nomlabel}[1]{#1 \dotfill}
+\setlength{\nomitemsep}{-\parsep}
+
+\usepackage{varioref}
+\usepackage{url}
+\usepackage{chngcntr}
+
+\usepackage{ifthen}
+\usepackage{todonotes}
+\usepackage[square]{natbib}
+
+\usepackage{pdfpages}
+\pdfminorversion=5
+
+\usepackage[
+    bookmarks,
+    bookmarksnumbered,
+    bookmarksopen=true,
+    bookmarksopenlevel=1,
+    colorlinks=true,
+    anchorcolor=AOBlau,
+    citecolor=AOBlau,
+    filecolor=AOBlau,
+    menucolor=AOBlau,
+    urlcolor=AOBlau,
+    pdftex,
+    plainpages=false,
+    pdfpagelabels=true,
+    hypertexnames=false,
+    linkcolor=black,
+    linktoc=all,
+]{hyperref}
+\hypersetup{
+    pdftitle={\documentTitle -- \documentSubtitle},
+    pdfauthor={\authorName},
+    pdfcreator={\authorName},
+    pdfsubject={\documentTitle -- \documentSubtitle},
+    pdfkeywords={\documentTitle -- \documentSubtitle},
+}

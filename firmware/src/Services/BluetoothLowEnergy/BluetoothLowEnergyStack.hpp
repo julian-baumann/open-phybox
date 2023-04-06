@@ -6,18 +6,18 @@
 class BluetoothLowEnergyStack : public NimBLEServerCallbacks
 {
 public:
-    NimBLEServer* NimBleServer;
+    NimBLEServer *NimBleServer;
 
     BluetoothLowEnergyStack();
 
-    void AddService(BleService& service);
+    void AddService(BleService &service);
     void StartAdvertising();
     size_t GetConnectedCount() const;
 
 private:
-    NimBLEAdvertising* m_advertising;
+    NimBLEAdvertising *m_advertising;
 
-    void onConnect(NimBLEServer* pServer, ble_gap_conn_desc* desc) override;
-    void onDisconnect(NimBLEServer* pServer) override;
-    void onAuthenticationComplete(ble_gap_conn_desc* desc) override;
+    void onConnect(NimBLEServer *pServer, ble_gap_conn_desc *desc) override;
+    void onDisconnect(NimBLEServer *pServer) override;
+    void onAuthenticationComplete(ble_gap_conn_desc *desc) override;
 };

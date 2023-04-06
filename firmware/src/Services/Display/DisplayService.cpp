@@ -21,6 +21,8 @@ DisplayService::DisplayService()
 
 void DisplayService::ShowSplashScreen()
 {
+    SetCursor(10, 10);
+    Print("Operational");
 }
 
 void DisplayService::UpdateVoltageMeasurement(double measurement)

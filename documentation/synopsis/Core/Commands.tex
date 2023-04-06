@@ -1,0 +1,12 @@
+
+\newcommand{\includegraphicsKeepAspectRatio}[2]{\includegraphics[width=#2\textwidth,height=#2\textheight,keepaspectratio]{#1}}
+
+\newlength{\myx}
+\newlength{\myy}
+\newcommand\includegraphicstotab[2][\relax]{
+    \settowidth{\myx}{\includegraphics[{#1}]{#2}}
+    \settoheight{\myy}{\includegraphics[{#1}]{#2}}
+    \parbox[c][1.1\myy][c]{\myx} {
+        \includegraphics[{#1}]{#2}
+    }
+}

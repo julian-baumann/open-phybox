@@ -4,7 +4,6 @@
 BluetoothLowEnergyStack::BluetoothLowEnergyStack()
 {
     NimBLEDevice::init("Open Phybox");
-//    NimBLEDevice::setSecurityAuth(false, false, true);
 
     NimBLEDevice::setPower(ESP_PWR_LVL_P9);
     NimBLEDevice::setSecurityAuth(BLE_HS_IO_NO_INPUT_OUTPUT);
@@ -14,7 +13,6 @@ BluetoothLowEnergyStack::BluetoothLowEnergyStack()
 
     m_advertising = NimBLEDevice::getAdvertising();
 }
-
 
 void BluetoothLowEnergyStack::AddService(BleService& service)
 {

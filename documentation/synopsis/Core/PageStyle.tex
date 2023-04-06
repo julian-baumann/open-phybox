@@ -1,0 +1,59 @@
+% !TEX root = ../PhyboxReverseEngineering.tex
+
+\setlength{\topskip}{\ht\strutbox}
+\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=35mm}
+
+\usepackage[
+	automark,
+	headsepline,
+	ilines
+]{scrlayer-scrpage}
+
+\definecolor{AOBlau}{rgb}{0, 0.28, 0.56}
+
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+
+\renewcommand{\headfont}{\normalfont}
+\ihead{\large{\textsc{\documentTitle}}\\ \small{\documentSubtitle} \\[2ex] \textit{\headmark}}
+\chead{}
+\ohead{\includegraphics[scale=0.25]{\logo}}
+\setlength{\headheight}{54pt}
+
+\ifoot{\authorName}
+\cfoot{}
+\ofoot{\pagemark}
+
+\newcommand{\headingSpace}{1.5cm}
+
+\renewcommand*{\othersectionlevelsformat}[3]{
+  \makebox[\headingSpace][l]{#3\autodot}
+}
+
+\cftsetindents{section}{0.0cm}{\headingSpace}
+\cftsetindents{subsection}{0.0cm}{\headingSpace}
+\cftsetindents{subsubsection}{0.0cm}{\headingSpace}
+\cftsetindents{figure}{0.0cm}{\headingSpace}
+\cftsetindents{table}{0.0cm}{\headingSpace}
+
+
+% General
+% ------------------------------------------------------------------------------
+
+\onehalfspacing
+\frenchspacing
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\counterwithout{footnote}{section}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}.}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+
+\definecolor{heading}{rgb}{0.64,0.78,0.86}
+\definecolor{odd}{rgb}{0.9,0.9,0.9}
