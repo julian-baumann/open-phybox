@@ -11,7 +11,7 @@
 		0A207F9929A282FB0049CD88 /* PeripheralCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A207F9829A282FB0049CD88 /* PeripheralCommunication.swift */; };
 		0A207F9B29A298A50049CD88 /* BluetoothDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A207F9A29A298A50049CD88 /* BluetoothDisabledView.swift */; };
 		0A207F9E29A2B0D20049CD88 /* MeasurementData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A207F9D29A2B0D20049CD88 /* MeasurementData.swift */; };
-		0AB9B98029DF6FAF00B1EBEA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9B97F29DF6FAF00B1EBEA /* Helper.swift */; };
+		0AB9B98029DF6FAF00B1EBEA /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9B97F29DF6FAF00B1EBEA /* Helpers.swift */; };
 		0AC28BF029A273FC00EEE8FB /* OpenPhyboxSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC28BEF29A273FC00EEE8FB /* OpenPhyboxSwiftApp.swift */; };
 		0AC28BF229A273FC00EEE8FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC28BF129A273FC00EEE8FB /* ContentView.swift */; };
 		0AC28BF429A273FD00EEE8FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC28BF329A273FD00EEE8FB /* Assets.xcassets */; };
@@ -23,7 +23,7 @@
 		0A207F9829A282FB0049CD88 /* PeripheralCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralCommunication.swift; sourceTree = "<group>"; };
 		0A207F9A29A298A50049CD88 /* BluetoothDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDisabledView.swift; sourceTree = "<group>"; };
 		0A207F9D29A2B0D20049CD88 /* MeasurementData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementData.swift; sourceTree = "<group>"; };
-		0AB9B97F29DF6FAF00B1EBEA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		0AB9B97F29DF6FAF00B1EBEA /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0AC28BEC29A273FC00EEE8FB /* OpenPhyboxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPhyboxSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC28BEF29A273FC00EEE8FB /* OpenPhyboxSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPhyboxSwiftApp.swift; sourceTree = "<group>"; };
 		0AC28BF129A273FC00EEE8FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,13 +53,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		0A207F9529A275A60049CD88 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		0A207F9C29A2B0170049CD88 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,9 +80,8 @@
 		0AC28BEE29A273FC00EEE8FB /* OpenPhyboxSwift */ = {
 			isa = PBXGroup;
 			children = (
-				0AB9B97F29DF6FAF00B1EBEA /* Helper.swift */,
+				0AB9B97F29DF6FAF00B1EBEA /* Helpers.swift */,
 				0A207F9C29A2B0170049CD88 /* Entities */,
-				0A207F9529A275A60049CD88 /* ViewModels */,
 				0A207F9429A275A00049CD88 /* Views */,
 				0AC28BFE29A2757800EEE8FB /* Services */,
 				0AC28BEF29A273FC00EEE8FB /* OpenPhyboxSwiftApp.swift */,
@@ -196,7 +188,7 @@
 				0A207F9929A282FB0049CD88 /* PeripheralCommunication.swift in Sources */,
 				0A207F9B29A298A50049CD88 /* BluetoothDisabledView.swift in Sources */,
 				0AC28BF029A273FC00EEE8FB /* OpenPhyboxSwiftApp.swift in Sources */,
-				0AB9B98029DF6FAF00B1EBEA /* Helper.swift in Sources */,
+				0AB9B98029DF6FAF00B1EBEA /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

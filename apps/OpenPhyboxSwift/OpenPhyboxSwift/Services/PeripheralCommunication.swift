@@ -61,8 +61,6 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
         for service in services {
             peripheral.discoverCharacteristics([measurementCharacteristicUUID], for: service)
         }
-        
-        print("Discovered Services: \(services)")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
@@ -90,19 +88,23 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
         }
         
         let rawByteArray = [UInt8](rawValue)
-        let chunked = rawByteArray.chunked(into: 12)
+        let chunked = rawByteArray.chunked(into: 9)
         
         for chunk in chunked {
-            let time = UInt32(Array(chunk[...3]))
-            let measurement = Double(Array(chunk[4...]))
+            let timeSpan = UInt8(chunk[0])
+            let measurement = Double(Array(chunk[1...]))
 
-            guard
-                let measurement = measurement,
-                let time = time else {
+            guard let measurement = measurement else {
                 continue;
             }
             
-            currentMeasurement.data.append(.init(voltageMeasurement: measurement, time: time))
+            currentMeasurement.data.append(
+                .init(
+                    voltageMeasurement: measurement,
+                    time: timeSpan
+                )
+            )
+            
             currentMeasurement.latestReading = measurement
         }
 

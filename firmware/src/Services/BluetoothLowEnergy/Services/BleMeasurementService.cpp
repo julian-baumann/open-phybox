@@ -7,6 +7,11 @@ struct MeasurementMessage
     double measurement;
 };
 
+const uint32_t BLE_CHARACTERISTIC_MAX_BYTES = 512;
+const uint8_t MEASUREMENT_MESSAGE_BYTES = sizeof(MeasurementMessage);
+const uint8_t BUFFER_SIZE = BLE_CHARACTERISTIC_MAX_BYTES / MEASUREMENT_MESSAGE_BYTES;
+
+
 BleMeasurementService::BleMeasurementService(BluetoothLowEnergyStack& bleStack)
         : m_service(*bleStack.NimBleServer->createService("B0F151EE-E5D8-45C5-A908-E713DACB728C")),
           m_measurement_characteristic(*m_service.createCharacteristic(
@@ -31,20 +36,17 @@ NimBLEUUID BleMeasurementService::GetUUID()
 
 void BleMeasurementService::UpdateValue(std::map<uint32_t, double>& currentPartialMeasurement)
 {
-    const uint8_t bufferSize = 42;
-
     auto measurementsTaken = currentPartialMeasurement.size();
-    Serial.println("\nMeasurements taken: " + String(measurementsTaken));
+    uint16_t iterationsNeeded = std::ceil((float) measurementsTaken / BUFFER_SIZE);
 
-    uint16_t iterationsNeeded = std::ceil((float) measurementsTaken / bufferSize);
-
+    Serial.println("\n" + String(measurementsTaken) + " measurements were taken");
     Serial.println("Need " + String(iterationsNeeded) + " iterations to send all measurements");
 
     for (uint16_t iteration = 0; iteration < iterationsNeeded; iteration++)
     {
-        MeasurementMessage data[bufferSize];
+        MeasurementMessage data[BUFFER_SIZE];
 
-        int newStartIndex = bufferSize * iteration;
+        int newStartIndex = BUFFER_SIZE * iteration;
         auto currentChunkedMeasurementIterator = std::next(currentPartialMeasurement.begin(), newStartIndex);
         std::map<uint32_t, double> currentChunkedMeasurements(currentChunkedMeasurementIterator, currentPartialMeasurement.end());
 
@@ -52,17 +54,13 @@ void BleMeasurementService::UpdateValue(std::map<uint32_t, double>& currentParti
 
         for (auto valuePair : currentChunkedMeasurements)
         {
-            if (index >= bufferSize)
+            if (index >= BUFFER_SIZE)
             {
-                Serial.println("index exeeded bufferSize!");
-
                 break;
             }
 
             uint8_t timeSpanSinceLastSample = valuePair.first - m_lastTimeStamp;
             m_lastTimeStamp = valuePair.first;
-
-            Serial.println("Timespan: " + String(timeSpanSinceLastSample));
 
             data[index] = {
                     .time = timeSpanSinceLastSample,
@@ -71,9 +69,6 @@ void BleMeasurementService::UpdateValue(std::map<uint32_t, double>& currentParti
 
             index++;
         }
-
-        // Serial.println("Array length: " + String(sizeof(data) / sizeof(data[0])));
-        // Serial.println("Array size: " + String(sizeof(data)));
 
         m_measurement_characteristic.setValue(data);
 

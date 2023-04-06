@@ -10,7 +10,7 @@ import Foundation
 struct MeasurementDatapoint: Identifiable {
     var id = UUID()
     var voltageMeasurement: Double
-    var time: UInt32
+    var time: UInt8
 }
 
 class MeasurementData: ObservableObject {

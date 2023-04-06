@@ -1,8 +1,7 @@
 #include <Arduino.h>
 #include "Main.hpp"
+#include "Config.hpp"
 
-const uint32_t MEASURE_INTERVAL_MS = 10;
-const uint32_t UPDATE_BLE_INTERVAL_MS = 1000;
 uint32_t lastMeasurementTime = 0;
 uint32_t lastBleUpdateTime = 0;
 
@@ -19,7 +18,7 @@ void setup()
 
     m_bleService->StartAdvertising();
 
-    pinMode(36, INPUT);
+    pinMode(MEASUREMENT_PIN, INPUT);
     Serial.println("ESP is ready.");
 
     m_displayService->ShowSplashScreen();

@@ -1,5 +1,5 @@
 //
-//  Extensions.swift
+//  Helpers.swift
 //  OpenPhyboxSwift
 //
 //  Created by Julian Baumann on 06.04.23.
