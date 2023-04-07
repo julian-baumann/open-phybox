@@ -10,17 +10,16 @@ import CoreBluetooth
 
 class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     public static let shared = PeripheralCommunication()
-
+    
+    private let measurementAnalyzer = MeasurementAnalyzer.shared
     private let serviceUUID = CBUUID(string: "B0F151EE-E5D8-45C5-A908-E713DACB728C")
     private let measurementCharacteristicUUID = CBUUID(string: "0D279FAD-980C-4C50-8FFF-3F3C266251D0")
     private var centralManager: CBCentralManager!
     private var peripheralESP: CBPeripheral?
-    private var count = 0
     
     @Published public var isPoweredOn = false
     @Published public var connected = false
     @Published public var connecting = false
-    @Published public var currentMeasurement = MeasurementData()
     @Published public var connectedPeripheral: CBPeripheral?
     
     override init() {
@@ -46,6 +45,7 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
         connecting = false
         connectedPeripheral?.delegate = self
         connectedPeripheral?.discoverServices([serviceUUID])
+        measurementAnalyzer.clear()
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -98,18 +98,13 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
                 continue;
             }
             
-            currentMeasurement.data.append(
-                .init(
-                    voltageMeasurement: measurement,
-                    time: timeSpan
-                )
+            let currentMeasurementDataPoint = RawMeasurement(
+                voltageMeasurement: measurement,
+                timeDifference: timeSpan
             )
             
-            currentMeasurement.latestReading = measurement
+            measurementAnalyzer.add(measurement: currentMeasurementDataPoint)
         }
-
-        currentMeasurement = currentMeasurement
-        count += 1
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {

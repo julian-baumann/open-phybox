@@ -7,13 +7,15 @@
 
 import Foundation
 
-struct MeasurementDatapoint: Identifiable {
+struct RawMeasurement: Identifiable {
     var id = UUID()
     var voltageMeasurement: Double
-    var time: UInt8
+    var timeDifference: UInt8
 }
 
-class MeasurementData: ObservableObject {
-    @Published var latestReading: Double = 0.0
-    @Published var data: [MeasurementDatapoint] = []
+
+struct MeasurementData: Identifiable {
+    var id = UUID()
+    var voltageMeasurement: Double
+    var time: UInt
 }

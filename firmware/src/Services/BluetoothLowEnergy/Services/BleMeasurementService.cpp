@@ -7,7 +7,7 @@ struct MeasurementMessage
     double measurement;
 };
 
-const uint32_t BLE_CHARACTERISTIC_MAX_BYTES = 512;
+const uint32_t BLE_CHARACTERISTIC_MAX_BYTES = 252;
 const uint8_t MEASUREMENT_MESSAGE_BYTES = sizeof(MeasurementMessage);
 const uint8_t BUFFER_SIZE = BLE_CHARACTERISTIC_MAX_BYTES / MEASUREMENT_MESSAGE_BYTES;
 
@@ -52,7 +52,7 @@ void BleMeasurementService::UpdateValue(std::map<uint32_t, double>& currentParti
 
         int index = 0;
 
-        for (auto valuePair : currentChunkedMeasurements)
+        for (auto valuePair: currentChunkedMeasurements)
         {
             if (index >= BUFFER_SIZE)
             {
