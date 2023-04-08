@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Charts
 
 extension FloatingPoint {
     
@@ -51,4 +52,19 @@ prefix func ! (value: Binding<Bool>) -> Binding<Bool> {
         get: { !value.wrappedValue },
         set: { value.wrappedValue = !$0 }
     )
+}
+
+extension View {
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }

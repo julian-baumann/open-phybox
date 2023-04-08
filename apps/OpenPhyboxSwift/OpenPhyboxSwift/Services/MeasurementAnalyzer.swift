@@ -22,17 +22,19 @@ class MeasurementAnalyzer: ObservableObject {
     public func add(measurement: RawMeasurement) {
         if !activeMeasuring {
             if measurement.voltageMeasurement > 0.0 {
+                activeMeasuring = true
+                
                 currentMeasurement = [MeasurementData(
                     voltageMeasurement: 0.0,
                     time: 0
                 )]
                 
+                print(measurement.timeDifference)
+                
                 currentMeasurement.append(MeasurementData(
                     voltageMeasurement: measurement.voltageMeasurement,
                     time: UInt(measurement.timeDifference)
                 ))
-
-                activeMeasuring = true
             } else {
                 lastVoltageMeasurement = measurement.voltageMeasurement
             }

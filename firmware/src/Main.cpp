@@ -19,6 +19,7 @@ void setup()
     m_bleService->StartAdvertising();
 
     pinMode(MEASUREMENT_PIN, INPUT);
+
     Serial.println("ESP is ready.");
 
     m_displayService->ShowSplashScreen();
@@ -37,7 +38,7 @@ void loop()
     if (currentMilliseconds - lastBleUpdateTime >= UPDATE_BLE_INTERVAL_MS)
     {
         lastBleUpdateTime = currentMilliseconds;
-        auto currentPartialMeasurement = m_measurementService->GetCurrentPartialMeasurement();
+        auto currentPartialMeasurement = MeasurementService::GetCurrentPartialMeasurement();
         m_bleMeasurementService->UpdateValue(currentPartialMeasurement);
     }
 }

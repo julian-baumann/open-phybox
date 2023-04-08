@@ -12,24 +12,42 @@ struct ContentView: View {
     @StateObject var peripheralCommunication = PeripheralCommunication()
     @StateObject var measurementAnalyzer = MeasurementAnalyzer.shared
     
+    @State var showCircleMarks = false
+    
     var body: some View {
         NavigationStack {
             if (peripheralCommunication.isPoweredOn) {
-                VStack {
-                    Chart(measurementAnalyzer.currentMeasurement) { dataPoint in
-                        Plot {
-                            LineMark(
-                                x: .value("Time", dataPoint.time),
-                                y: .value("Voltage", dataPoint.voltageMeasurement)
-                            )
-                        }
-                        .interpolationMethod(.catmullRom)
+                List {
+                    Section {
+                        Toggle("Show Marks", isOn: $showCircleMarks)
                     }
-                    .chartYScale(domain: -15...15)
-                    .padding()
+                    Section {
+                        Chart(measurementAnalyzer.currentMeasurement) { dataPoint in
+                            if showCircleMarks {
+                                Plot {
+                                    LineMark(
+                                        x: .value("Time", dataPoint.time),
+                                        y: .value("Voltage", dataPoint.voltageMeasurement)
+                                    )
+                                }
+                                .symbol(.circle)
+                                .interpolationMethod(.catmullRom)
+                            } else {
+                                Plot {
+                                    LineMark(
+                                        x: .value("Time", dataPoint.time),
+                                        y: .value("Voltage", dataPoint.voltageMeasurement)
+                                    )
+                                }
+                                .interpolationMethod(.catmullRom)
+                            }
+                        }
+                        .chartYScale(domain: -15...15)
+                        .padding()
+                    }
+                    .frame(minHeight: 500)
                 }
                 .navigationTitle("Open Phybox")
-                .padding()
                 .sheet(isPresented: !$peripheralCommunication.connected) {
                     SelectDeviceView()
                         .environmentObject(peripheralCommunication)

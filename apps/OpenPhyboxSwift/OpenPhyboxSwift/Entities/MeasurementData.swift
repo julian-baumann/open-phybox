@@ -13,7 +13,6 @@ struct RawMeasurement: Identifiable {
     var timeDifference: UInt8
 }
 
-
 struct MeasurementData: Identifiable {
     var id = UUID()
     var voltageMeasurement: Double
