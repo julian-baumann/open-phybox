@@ -45,7 +45,7 @@ Eine Messung beinhaltet wie zuvor schon erwähnt den Zeitpunkt der Messung und d
     \includegraphicsKeepAspectRatio{measurement-schema.pdf}{0.7}
 \end{figure}
 
-Wie aus der obigen Abbildung zu entnehmen ist, ist \textsc{Time} ein 8-Bit unsigned Integer. Dieser enthält nicht den vollen Zeitpunkt der Messung, sondern nur die Differenz zur letzten Messung. Diese sollte im Idealfall immer \textsc{10 Millisekunden} sein, da der Messinterrupt immer im 10 Millisekundentakt feuern sollte. Trotzdem enthält jede Messung diese Zeitdifferenz um noch ein mal sicherstellen zu können, dass die Messungen richtig interpretiert werden können.
+Wie aus der obigen Abbildung zu entnehmen ist, ist \textsc{Time} ein \textsc{8-Bit unsigned Integer}. Dieser enthält nicht den vollen Zeitpunkt der Messung, sondern nur die Differenz zur letzten Messung. Diese sollte im Idealfall immer \textsc{10 Millisekunden} sein, da der Messinterrupt immer im 10 Millisekundentakt feuern sollte. Trotzdem enthält jede Messung diese Zeitdifferenz um noch ein mal sicherstellen zu können, dass die Messungen richtig interpretiert werden können. So ist es nämlich möglich den Messtakt mit einer einzigen Anweisung zu ändern, wobei das Frontend, dass die Daten empfängt keinerlei Kenntnisse davon haben muss.
 
 Da alle \textsc{10 Millisekunden} eine Messung aufgenommen wird, diese aber nur \textsc{jede Sekunde} über \ac{BLE} übertragen werden, sammeln sich diese Messungen an und werden dann anschließend alle gemeinsam in einem Schwung übertragen.
 
