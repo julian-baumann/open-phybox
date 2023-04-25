@@ -1,30 +1,20 @@
 #include "MeasurementService.hpp"
+#include <Adafruit_ADS1X15.h>
 #include "../../Config.hpp"
 
-// static Adafruit_ADS1115 ads;
+static Adafruit_ADS1115 ads;
 
-std::map<uint32_t, uint32_t> CurrentPartialMeasurement;
+std::map<uint32_t, int32_t> CurrentPartialMeasurement;
 
 MeasurementService::MeasurementService()
 {
-    // ads.begin();
+    ads.setGain(GAIN_ONE);
+    ads.begin();
 }
 
-uint32_t MeasurementService::GetVoltageMeasurement(uint8_t GpioPin)
+int16_t MeasurementService::GetVoltageMeasurement(uint8_t GpioPin)
 {
-    // uint16_t sensorValue = ads.readADC_Differential_2_3();
-    // float multiplier = 0.1875F;
-    // Serial.print("Differential: ");
-    // Serial.print(sensorValue);
-    // Serial.print("(");
-    // Serial.print(sensorValue * multiplier);
-    // Serial.println("mV)");
-    // double currentValue = (sensorValue * 15.0) / (65536.0);
-
-    analogReadResolution(16);
-    uint32_t sensorValue = analogRead(GpioPin);
-
-    return sensorValue;
+    return ads.readADC_SingleEnded(0);
 }
 
 std::map<uint32_t, double> MeasurementService::GetCurrentPartialMeasurement()
@@ -34,7 +24,9 @@ std::map<uint32_t, double> MeasurementService::GetCurrentPartialMeasurement()
     for (auto valuePair: CurrentPartialMeasurement)
     {
         uint32_t time = valuePair.first;
-        double measurement = ((valuePair.second * 15.0) / 65536.0);
+        double measurement = valuePair.second * 0.000125;
+
+        Serial.println("Measurement: " + String(measurement));
 
         result.insert({ time, measurement });
     }

@@ -1,6 +1,12 @@
 \babel@toc {ngerman}{}\relax 
 \contentsline {section}{\nonumberline Abbildungsverzeichnis}{I}{section*.6}%
-\contentsline {section}{Glossar}{II}{section*.7}%
-\contentsline {section}{\numberline {1}Einführung}{1}{section.8}%
-\contentsline {subsection}{\numberline {1.1}Problemstellung und Zielsetzung des Projekts}{1}{subsection.9}%
+\contentsline {section}{Glossar}{II}{section*.8}%
+\contentsline {section}{\numberline {1}Einführung}{1}{section.9}%
+\contentsline {subsection}{\numberline {1.1}Problemstellung}{1}{subsection.10}%
+\contentsline {subsection}{\numberline {1.2}Zielsetzung des Projektes}{2}{subsection.12}%
+\contentsline {subsection}{\numberline {1.3}Herangehensweisen}{2}{subsection.18}%
+\contentsline {section}{\numberline {2}Reverse Engineering des Phybox Protokolls}{3}{section.21}%
+\contentsline {section}{\numberline {3}Entwickeln einer neuen Phybox}{7}{section.24}%
+\contentsline {subsection}{\numberline {3.1}Semantik der Open Phybox}{9}{subsection.27}%
+\contentsline {subsection}{\numberline {3.2}Bluetooth Low Energy Kommunikation}{10}{subsection.28}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

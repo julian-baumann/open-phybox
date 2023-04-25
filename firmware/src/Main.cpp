@@ -32,7 +32,7 @@ void loop()
     if (currentMilliseconds - lastMeasurementTime >= MEASURE_INTERVAL_MS)
     {
         lastMeasurementTime = currentMilliseconds;
-        m_measurementService->MeasureCurrentVoltage();
+        MeasurementService::MeasureCurrentVoltage();
     }
 
     if (currentMilliseconds - lastBleUpdateTime >= UPDATE_BLE_INTERVAL_MS)

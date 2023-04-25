@@ -78,9 +78,3 @@ void BleMeasurementService::UpdateValue(std::map<uint32_t, double>& currentParti
         }
     }
 }
-
-void BleMeasurementService::onStatus(NimBLECharacteristic* characteristic, NimBLECharacteristicCallbacks::Status status, int code)
-{
-    Serial.println(
-            "Notification/Indication status code: " + String(status) + ", returned code: " + String(code) + ", " + NimBLEUtils::returnCodeToString(code));
-}

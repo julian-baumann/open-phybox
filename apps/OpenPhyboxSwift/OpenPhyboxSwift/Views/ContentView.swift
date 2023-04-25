@@ -19,9 +19,6 @@ struct ContentView: View {
             if (peripheralCommunication.isPoweredOn) {
                 List {
                     Section {
-                        Toggle("Show Marks", isOn: $showCircleMarks)
-                    }
-                    Section {
                         Chart(measurementAnalyzer.currentMeasurement) { dataPoint in
                             if showCircleMarks {
                                 Plot {
@@ -42,10 +39,15 @@ struct ContentView: View {
                                 .interpolationMethod(.catmullRom)
                             }
                         }
-                        .chartYScale(domain: -15...15)
+                        .chartYScale(domain: -0.7...3)
                         .padding()
                     }
                     .frame(minHeight: 500)
+                }
+                
+                Section {
+                    Toggle("Show Marks", isOn: $showCircleMarks)
+                    Toggle("Continious Measurement", isOn: $measurementAnalyzer.continousMeasurement)
                 }
                 .navigationTitle("Open Phybox")
                 .sheet(isPresented: !$peripheralCommunication.connected) {

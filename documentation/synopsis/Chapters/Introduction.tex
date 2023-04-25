@@ -1,32 +1,43 @@
 \section{Einführung}
 \label{sec:Introduction}
 
-% \subsection{Acknowledgements}
-% \label{sec:Acknowledgements}
+\subsection{Problemstellung}
+\label{sec:Problemstellung}
 
-% Thanks to\\
-% \textsc{Stefan Langgartner}, for his open support and the opportunity to pursue this project.\\
-% \textsc{CyanCor GmbH}, for supporting this work by providing a workspace where I could operate day and night.\\
-
-\subsection{Problemstellung und Zielsetzung des Projekts}
-\label{sec:Problemstellung und Zielsetzung des Projekts}
-
-In diesem Projekt geht es darum, alte Technik aus den 90er Jahren in einem physikalischen Experiment zu ersetzen. Das gewünschte Experiment dient dazu, die Kraft eines abgefeuerten Geschosses aus einer Pistole zu bestimmen.
+Zusammengefasst geht es in diesem Projekt darum, alte 90-er Jahre Technik eines Physikexperiments zu ersetzen. Das gewünschte Experiment dient dazu, die Kraft eines abgefeuerten Geschosses aus einer Pistole zu bestimmen.
 
 \begin{figure}[htb]
 \centering
 \includegraphicsKeepAspectRatio{experiment.pdf}{0.6}
 \end{figure}
 
-Wie in der obigen Grafik dargestellt, trifft ein Geschoss auf ein ballistisches Gel, dessen Aufprall dann von einem Kraftmesser ausgelesen wird, dass das Signal an das Steuergerät "Phybox PB1" weiterleitet. Dieses Gerät verarbeitet das Signal des Messgeräts und sendet es über eine serielle RS-232-Verbindung an einen Windows XP-Computer. Auf dem PC läuft eine proprietäre Software namens "CATTSoft", die den gemessenen Stoß als Liniendiagramm auf dem Display anzeigt. Die Software wurde von denselben Leuten geschrieben, die auch das Phybox PB1-Gerät entwickelt haben, nämlich \ac{IBK}.
+Wie in der obigen Grafik dargestellt, trifft ein Geschoss auf ein ballistisches Gel, dessen Aufprall dann von einem Kraftmesser ausgelesen wird, dass das Signal an das Steuergerät "Phybox PB1" weiterleitet. Dieses Gerät verarbeitet das Signal des Messgeräts und sendet es über eine serielle RS-232-Verbindung an einen Windows XP-Computer. Auf dem PC läuft eine proprietäre Software namens "CATTSoft", die den gemessenen Stoß als Liniendiagramm auf dem Display anzeigt. Die Software wurde von denselben Leuten geschrieben, die auch das Phybox PB1-Gerät entwickelt haben, nämlich die\\
+\textsc{\ac{IBK}}.
 
-\textbf{Das Problem} bei diesem Versuchsaufbau ist, dass diese proprietäre Software nur auf einem \ac{PC} mit Windows 3.1, 95, 98 oder Windows XP verfügbar ist. Die \textsc{FOSBOS Rosenheim} hat seit einigen Jahren Windows 10 \ac{PC}s in allen Klassenzimmern im Einsatz und die Schüler verwenden hauptsächlich iPad-Geräte. Mit diesen neueren Geräten ist es möglich, das beschriebene Diagramm auf einen großen Bildschirm zu projizieren, der für alle Schüler sichtbar ist und auch die Möglichkeit bietet, die gemessenen Daten weiter zu verarbeiten.
+\textbf{Das Problem} bei diesem Versuchsaufbau ist, dass diese proprietäre Software nur auf einem \ac{PC} mit Windows 3.1, 95, 98 oder Windows XP verfügbar ist. Die \textsc{FOSBOS Rosenheim} hat seit einigen Jahren Windows 10 \ac{PC}s in allen Klassenzimmern im Einsatz und die Schüler verwenden hauptsächlich iPad-Geräte. Mit diesen neueren Geräten ist es möglich, das beschriebene Diagramm auf einen großen Bildschirm zu projizieren, der für alle Schüler sichtbar ist und auch die Möglichkeit bietet, die gemessenen Daten weiterzuverarbeiten.
 
-\textbf{Das ultimative Ziel} dieses Projekts ist es, eine neue Software zu schreiben, die kompatibel mit dem Messgerät und dem Versuchsaufbau bleibt und die diese gemessenen Auswirkungen als Liniendiagramm anzeigt und auf einem modernen Windows \ac{PC}, iPadOS oder macOS Gerät läuft. Dieses neue System soll dennoch komplett kompatibel mit den originalen Messgeräten und dem Versuchsaufbau bleiben.
+\clearpage
 
+\subsection{Zielsetzung des Projektes}
+\label{sec:Zielsetzung des Projektes}
 
-% \subsection{Project delimitation}
-% \label{sec:Project delimitation}
-% Due to limited time, this project only uncovers critical and needed sections of the desired protocol. Just enough to only get the described experiment to work with the new setup. The Phybox PB1 and CATTSoft support a large catalog of measurement devices and software functionalities, that will not be covered in this work.
+\textbf{Das ultimative Ziel} dieses Projekts ist es, eine neue Software zu schreiben, die kompatibel mit dem Messgerät und dem Versuchsaufbau bleibt und die diese gemessenen Auswirkungen als Liniendiagramm anzeigt und auf einem modernen Windows \ac{PC}, iPadOS oder macOS Gerät läuft. Folglich wurden schon sehr früh in der Projektphase folgende Ziele definiert:
+\begin{enumerate}
+    \item \texttt{Einfache Benutzeroberfläche mit Null-Konfigurationsaufwand für den Nutzer}
+    \item \texttt{Moderne iPadOS und Windows App}
+    \item \texttt{Messwerte sollen über \ac{BLE} an das Endgerät geschickt werden}
+    \item \texttt{Kompatibel mit den originalen Phybox Messgeräten}
+\end{enumerate}
 
-% By describing how exactly I reverse engineered the Phybox protocol, and providing a basic overview on how it works, this document can be used as basis to others, who may want to extend this project.
+\subsection{Herangehensweisen}
+\label{sec:Herangehensweisen}
+
+Um dieses Ziel zu erfüllen, wurde mit zwei verschiedene Ansätzen experimentiert:
+\begin{enumerate}
+    \item \texttt{Reverse Engineering der seriellen Schnittstelle der Phybox}
+    \item \texttt{Ersetzen der kompletten Phybox durch einen \ac{ESP32}}
+\end{enumerate}
+
+Letztendlich wurde sich für den letzteren Ansatz entschieden, da dieser mit weniger Aufwand verbunden ist und deutlich stabiliere Ergebnisse erzielen konnte.\\
+\\[2em]
+Anschließend wird nun zuerst der erste Ansatz beschrieben, danach der zweite und zum Schluss wird noch die Entwicklung der iPadOS App angeschnitten.

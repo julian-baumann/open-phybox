@@ -46,7 +46,7 @@ struct SelectDeviceView: View {
                 }
             }
             .padding()
-            .navigationTitle("Finding device")
+            .navigationTitle("Searching...")
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #elseif os(macOS)

@@ -1,0 +1,61 @@
+\section{Reverse Engineering des Phybox Protokolls}
+\label{sec:Reverse Engineering des Phybox Protokolls}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{reverse-engineering.pdf}{0.6}
+\end{figure}
+
+Bei diesem Ansatz soll ein \ac{ESP32} Mikrocontroller zwischengeschaltet werden, der die gemessenen und verarbeiteten Daten der Phybox über \ac{BLE} an das gewünschte Endgerät weitergibt. Hierbei ist die Idee, dass der ESP32 die Daten der Phybox über die \textsc{RS232 Schnittstelle} entgegennimmt und sich so verhält wie die proprietäre CATTSoft Software. Somit wirkt es für die Phybox so, als wäre an ihr immer noch ein alter Windows XP \ac{PC} angeschlossen. Es braucht somit keinerlei Modifizierungen an der Phybox selbst. Diese misst wie gewohnt das analoge Signal des Kraftmessers über den \textsc{7 Pin DIN Anschluss} aus, bereitet diese Digital auf und schickt diese Messwerte über als digitales Signal über die \textsc{RS232 Schnittstelle} an den \ac{ESP32}.
+
+Das Problem ist, dass dieses serielle Protokoll der Phybox weder ein standardisiertes Protokoll ist, noch wurde je eine Entwicklerdokumentation dafür veröffentlicht. Eine Möglichkeit um dieses Problem zu lösen, bietet \textsc{Reverse Engineering}.
+
+Bei (fast) jedem seriellen Protokoll werden im Grunde nur Datenbits übertragen. Wenn es uns nun gelingt herauszufinden, welche Datenpakete die Phybox bei einer bestimmten Anweisung erwartet, ist es uns folglich auch möglich ihr vorzugaukeln, dass am anderen Ende der seriellen Verbindung das CATTSoft Programm die Befehle sendet und entgegennimmt.
+
+Um Herauszufinden, welche Datenpakete welche Bedeutung haben und auf welche Datenpakete wir antworten müssen, um die gewollten Daten zu kriegen, wurde eine virtuelle Maschine aufgesetzt, in der ein Windows XP System mit der installierten CATTSoft Software sitzt. Die seriellen Signale werden nun durch eine Sniffer-Software überwacht, bevor sie in die virtuelle Maschine weitergeleitet werden. Dies ermöglicht es uns genau nachvollziehen zu können, welche Daten von der Phybox gesendet werden, welche von der CATTSoft Software gesendet werden und wie die beiden Parteien miteinander interagieren.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{serial-monitor.png}{1.0}
+\end{figure}
+
+
+In dem obigen Screenshot ist die \textsc{Free Device Monitoring Software} \footnote{\url{https://freeserialanalyzer.com}} zu sehen, mit der die serielle Verbindung zwischen der Phybox und dem CATTSoft Programm mitverfolgt wurde. In Rot werden alle Befehle visualisiert, die von der Phybox an das Computerprogramm gesendet werden, darunter in Blau sieht man alle Befehle welche die Software erwidert. Alle Befehle werden als Hexadezimalzahlen angezeigt. Diese muss man manuell vergleichen um zu sehen, ob sich bestimmte Muster ergeben, aus denen man Analysieren kann, was diese Bitfolgen repräsentieren sollen.
+
+Allerdings zeigt dieses Programm die Read und Write Pakete getrennt voneinander und ziemlich unübersichtlich für unsere Zwecke da. Zum Glück erlaubt dieses Programm, die aufgezeichnete Kommunikation als Text-Datei zu exportieren. Als Nächstes wurde ein kleines Programm geschrieben, dass diese Dateien lesen und auswerten kann. Diese kleine Software zeigt die Read und Write Pakete chronologisch untereinander an, um den Verlauf der Kommunikation besser zu visualisieren. Außerdem erlaubt die Software auch mehrere Aufzeichnungen nebeneinander anzuzeigen und gemeinsame Pakete auszuwählen, die wiederum zum Synchronisieren der einzelnen Aufzeichnungen nützen. Dies erlaubt es uns die Kommunikation aus verschiedenen Aufzeichnungen zu vergleichen um bestimmte Muster besser erkennen zu können.
+
+\clearpage
+
+Screenshot der Software:
+
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{serial-analyzer.png}{1.0}
+    \caption{Ausschnitt aus der offiziellen Phybox Dokumentation der \ac{IBK}}
+\end{figure}
+
+Diese Software ist als Website unter \url{https://tools.juba.dev/protocol-analyzer} zu finden. (Source Code: \url{https://github.com/julian-baumann/serial-protocol-analyzer})
+
+Trotzdem ist die Analyse des Protokolls immer noch sehr mühsam. Man vergleicht hunderte dieser Datenpakete, um Muster zu finden, um herauszufinden, was diese wohl bedeuten. Es reicht nicht, einfach dieselben Pakete zurückzusenden. Es ist auch wichtig, dass diese Pakete zur richtigen Zeit und in der richtigen Reihenfolge gesendet werden. Oft kann nicht genau gesagt werden, ob die Antworten der CATTSoft Software überhaupt mit den Paketen der Phybox zusammenhängen, oder ob diese nur nach einer zeitlichen Periode gesendet werden. Auch ist oft unschlüssig, was diese Pakete bedeuten. Vielleicht wird anfangs die Seriennummer übertragen, vielleicht werden aber auch wichtige Konfigurationen an die Phybox gesendet, die Zeitabhängig sind und sich in Zukunft ändern.
+
+\clearpage
+
+Dennoch gelang es einige Komponenten der Kommunikation teilweise zu entschlüsseln und durch ein C\# Programm nachzubilden.
+Zum Beispiel sendet die Phybox mit der Baud-Rate \textsc{57600} kontinuierlich die folgenden Bytes:
+
+\begin{verbatim}
+    0x50 0x68 0x79 0x62 0x6F 0x78 0x20 0x50 0x42 0x31
+\end{verbatim}
+
+Diese repräsentieren die ASCII Zeichenkette \texttt{"Phybox PB1"}, welche von der Phybox solange gesendet werden, bis dann das andere Ende mit folgender Bytefolge antwortet:
+
+\begin{verbatim}
+    0x8B 0x0F 0x17 0x23 0x41
+\end{verbatim}
+
+Diese repräsentieren jedoch keine logische ASCII Zeichenkette mehr, noch konnte ermittelt werden, was diese Bytefolge bedeutet. Die Wahrscheinlichkeit ist gering, aber es ist natürlich auch möglich, dass diese Bytefolge einfach zufällig gewählt wurde. Nachdem der Client diese Bytes an die Phybox gesendet hat, hört die Phybox auf, kontinuierlich \texttt{"Phybox PB1"} zu senden und initiiert den Kommunikationsfluss.
+Es scheint auch, als würde ein Timer laufen, der abwechselnd vom Client und der Phybox aktualisiert wird, um  sicherzustellen, dass der gegenteilige Partner noch aktiv an der Kommunikation teilnimmt.
+
+Nach einiger Zeit wurde klar, dass diese Art eher sehr mühsam ist und zu ungenügenden Ergebnissen zielt, da nicht genau ermittelt werden konnte, was die einzelnen Bytefolgen bedeuten sollen. Mit mehr Zeit wäre dieser Ansatz vielleicht durchaus sinnvoll und umsetzbar, jedoch war dieser für dieses Projekt viel zu Zeitaufwändig.
+
+Aus diesem Grund wurde ein anderer Ansatz gewählt, der im folgenden Beschrieben wird.

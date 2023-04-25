@@ -1,0 +1,57 @@
+\section{Entwickeln einer neuen Phybox}
+\label{sec:Entwickeln einer neuen Phybox}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{esp-system.pdf}{0.6}
+\end{figure}
+
+Anstatt das digitale serielle Signal der Phybox abzugreifen, wird in diesem Ansatz gleich das analoge Signal des Messgeräts genutzt. Der Kraftmesser wird hierbei direkt über den 7 Pin DIN Anschluss an den \ac{ESP32} angeschlossen. Dieser misst das analoge Signal durch einen \ac{ADC}. Mit dieser Methode ist es uns also möglich, die Phybox komplett zu ersetzen und ein neues System einzusetzen, dass die Messung selbst interpretiert. Der glückliche Vorteil hierbei ist, dass das Messgerät ein analoges Signal ausgibt, das in der offiziellen Dokumentation detailliert beschrieben wird. Mit dem \ac{ESP32} können wir dann kontinuierlich eine Messung vornehmen und die Ergebnisse über \ac{BLE} an das Endgerät schicken.
+
+\clearpage
+
+\begin{figure}[htb]
+    \centering
+    \fbox{\includegraphicsKeepAspectRatio{phybox-documentation.pdf}{0.9}}
+    \caption{Ausschnitt aus der offiziellen Phybox Dokumentation der \ac{IBK}}
+\end{figure}
+
+In der obigen Abbildung ist zu erkennen, dass in der Dokumentation nicht nur beschrieben steht, wie genau der Sensor funktioniert, sondern auch die Belegung des 7 Pin DIN Steckers offengelegt wird. Es kann außerdem herausgelesen werden, dass der Kraft-Sensor eine Stromversorgung von \textpm 15V benötigt. Das Messgerät gibt folglich je nachdem wie stark der Federstahl-Streifen nach vorne oder hinten verbogen wird eine Spannung von \textpm 15V zurück. Ein Volt repräsentiert hierbei ein Newton. In der Dokumentation kann aus den technischen Daten jedoch herausgelesen werden, dass der Messbereich nur von \texttt{0 bis +10N} definiert ist. Dies ist durchaus nachvollziehbar, denn eine negative Messung macht in den seltensten Fällen Sinn und in den meisten Fällen wird eine Dehnung des Federstahl-Streifens in nur eine Richtung gebraucht. Dennoch wurde durch Experimente am Oszilloskop herausgefunden, dass das Messgerät aus technischer Sicht dennoch eine \textpm 15V Spannung liefert, auch wenn in der Software dann nur der Messbereich von 0 bis +10V berücksichtigt wird.
+
+\clearpage
+
+\subsection{Semantik der Open Phybox}
+\label{sec:Semantik der Open Phybox}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{open-phybox-comments.pdf}{0.9}
+\end{figure}
+
+Wie schon aus der \ac{IBK} Dokumentation entnommen werden kann, benötigt der Kraftmesser eine Eingangsspannung von \textpm 15V. Um dies zu gewährleisten wird die 5V Ausgangsspannung des \ac{ESP32} durch einen \textsc{Buck Converter} auf die gewünschten \textpm 15V gebracht. Diese Spannung wird nun über den \textsc{7 Pin DIN} Stecker an das Messgerät weitergegeben, welches wiederum ebenfalls ein analoges Messsignal zwischen \textpm 15V zurückliefert. Die maximale Messspannung des \acp{ADC} entspricht der gegebenen Eingangsspannung von \textsc{5}V. Deswegen wird das Messsignal durch einen Spannungsteiler auf ungefähr \textpm \textsc{3V} runtergebrochen. Der externe \ac{ADC} gibt die gemessene Spannung als digitales Signal über eine I$^{2}$C Verbindung an den \ac{ESP32} weiter.
+
+Der \ac{ESP32} führt alle 10 Millisekunden eine analoge Messung mittels \ac{ADC} aus. Diese Messung wird präzise über einen System-Interrupt ausgeführt. Diese Messdaten werden zusammen mit dem Zeitpunkt der Messung in einer Liste gespeichert, die jede Sekunde über \ac{BLE} an das Endgerät geschickt wird.
+
+\clearpage
+
+\subsection{Bluetooth Low Energy Kommunikation}
+\label{sec:Bluetooth Low Energy Kommunikation}
+
+Die Bluetoothkommunikation gestaltet sich ziemlich einfach. Dies wurde mit Absicht so implementiert, um soviel Daten wie möglich an mehrere Geräte so schnell wie möglich zu senden.
+Eine Messung beinhaltet wie zuvor schon erwähnt den Zeitpunkt der Messung und die Messung an sich. Diese ist ein \textsc{double}, dessen Wert die Spannung in Volt widerspiegelt. Die folgende Abbildung verdeutlicht dies noch einmal.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{measurement-schema.pdf}{0.7}
+\end{figure}
+
+Wie aus der obigen Abbildung zu entnehmen ist, ist \textsc{Time} ein 8-Bit unsigned Integer. Dieser enthält nicht den vollen Zeitpunkt der Messung, sondern nur die Differenz zur letzten Messung. Diese sollte im Idealfall immer \textsc{10 Millisekunden} sein, da der Messinterrupt immer im 10 Millisekundentakt feuern sollte. Trotzdem enthält jede Messung diese Zeitdifferenz um noch ein mal sicherstellen zu können, dass die Messungen richtig interpretiert werden können.
+
+Da alle \textsc{10 Millisekunden} eine Messung aufgenommen wird, diese aber nur \textsc{jede Sekunde} über \ac{BLE} übertragen werden, sammeln sich diese Messungen an und werden dann anschließend alle gemeinsam in einem Schwung übertragen.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{measurement-package.pdf}{1}
+\end{figure}
+
+Die Messungen werden einfach aneinander Konkateniert. Die Daten, die über Bluetooth gesendet werden bestehen, also aus einem \textsc{Array}, indem sich ein \textsc{struct} mit einem \textsc{8-Bit unsigned Integer} und einem \textsc{double} befindet.

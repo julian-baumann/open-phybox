@@ -19,6 +19,4 @@ private:
     uint32_t m_lastTimeStamp = 0;
     NimBLEService& m_service;
     NimBLECharacteristic& m_measurement_characteristic;
-
-    void onStatus(NimBLECharacteristic* characteristic, Status status, int code) override;
 };
