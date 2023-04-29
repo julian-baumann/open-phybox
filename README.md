@@ -5,6 +5,8 @@
 
 A re-implementation of the Phybox experiment box for the classroom. The original Phybox only works with legacy operating systems such as Windows XP. This repository contains firmware for a custom ESP-based build that is compatible with the original Phybox meters, but works with modern operating systems like iPadOS.
 
+A brief synopsis of this project and also part of a reverse engineering process of the phybox can be found [here](/documentation/synopsis/Output/PhyboxReverseEngineering.pdf).
+
 ## Repository structure
 
 ```
