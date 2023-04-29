@@ -53,7 +53,7 @@ struct ContentView: View {
                 .sheet(isPresented: !$peripheralCommunication.connected) {
                     SelectDeviceView()
                         .environmentObject(peripheralCommunication)
-                        .interactiveDismissDisabled(false)
+                        .interactiveDismissDisabled(true)
                 }
                 .toolbar {
                     ToolbarItem() {
