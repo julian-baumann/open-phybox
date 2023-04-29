@@ -11,4 +11,5 @@ public:
     static int16_t GetVoltageMeasurement(uint8_t GpioPin);
     static std::map<uint32_t, double> GetCurrentPartialMeasurement();
     static void MeasureCurrentVoltage();
+    static void onTimer();
 };

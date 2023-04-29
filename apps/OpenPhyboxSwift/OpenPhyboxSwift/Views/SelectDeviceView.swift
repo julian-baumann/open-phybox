@@ -47,11 +47,6 @@ struct SelectDeviceView: View {
             }
             .padding()
             .navigationTitle("Searching...")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #elseif os(macOS)
-            .frame(width: 350, height: 350)
-            #endif
         }
     }
 }

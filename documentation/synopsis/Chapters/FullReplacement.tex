@@ -13,7 +13,7 @@ Anstatt das digitale serielle Signal der Phybox abzugreifen, wird in diesem Ansa
 \begin{figure}[htb]
     \centering
     \fbox{\includegraphicsKeepAspectRatio{phybox-documentation.pdf}{0.9}}
-    \caption{Ausschnitt aus der offiziellen Phybox Dokumentation der \ac{IBK}}
+    \caption{Ausschnitt aus dem offiziellen \cite{PhyboxDocumentation} der \ac{IBK}}
 \end{figure}
 
 In der obigen Abbildung ist zu erkennen, dass in der Dokumentation nicht nur beschrieben steht, wie genau der Sensor funktioniert, sondern auch die Belegung des 7 Pin DIN Steckers offengelegt wird. Es kann außerdem herausgelesen werden, dass der Kraft-Sensor eine Stromversorgung von \textpm 15V benötigt. Das Messgerät gibt folglich je nachdem wie stark der Federstahl-Streifen nach vorne oder hinten verbogen wird eine Spannung von \textpm 15V zurück. Ein Volt repräsentiert hierbei ein Newton. In der Dokumentation kann aus den technischen Daten jedoch herausgelesen werden, dass der Messbereich nur von \texttt{0 bis +10N} definiert ist. Dies ist durchaus nachvollziehbar, denn eine negative Messung macht in den seltensten Fällen Sinn und in den meisten Fällen wird eine Dehnung des Federstahl-Streifens in nur eine Richtung gebraucht. Dennoch wurde durch Experimente am Oszilloskop herausgefunden, dass das Messgerät aus technischer Sicht dennoch eine \textpm 15V Spannung liefert, auch wenn in der Software dann nur der Messbereich von 0 bis +10V berücksichtigt wird.

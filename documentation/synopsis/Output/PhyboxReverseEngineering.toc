@@ -9,4 +9,5 @@
 \contentsline {section}{\numberline {3}Entwickeln einer neuen Phybox}{7}{section.24}%
 \contentsline {subsection}{\numberline {3.1}Semantik der Open Phybox}{9}{subsection.27}%
 \contentsline {subsection}{\numberline {3.2}Bluetooth Low Energy Kommunikation}{10}{subsection.28}%
+\contentsline {section}{\nonumberline Literaturverzeichnis}{11}{section*.30}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

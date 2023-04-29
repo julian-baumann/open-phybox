@@ -43,17 +43,17 @@ struct ContentView: View {
                         .padding()
                     }
                     .frame(minHeight: 500)
-                }
-                
-                Section {
-                    Toggle("Show Marks", isOn: $showCircleMarks)
-                    Toggle("Continious Measurement", isOn: $measurementAnalyzer.continousMeasurement)
+                    
+                    Section {
+                        Toggle("Show Marks", isOn: $showCircleMarks)
+                        Toggle("Continious Measurement", isOn: $measurementAnalyzer.continousMeasurement)
+                    }
                 }
                 .navigationTitle("Open Phybox")
                 .sheet(isPresented: !$peripheralCommunication.connected) {
                     SelectDeviceView()
                         .environmentObject(peripheralCommunication)
-                        .interactiveDismissDisabled(true)
+                        .interactiveDismissDisabled(false)
                 }
                 .toolbar {
                     ToolbarItem() {

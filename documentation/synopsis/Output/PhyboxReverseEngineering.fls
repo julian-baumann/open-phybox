@@ -1576,6 +1576,14 @@ INPUT ./Graphics//phybox-color.pdf
 INPUT ./Graphics//phybox-color.pdf
 INPUT Graphics//phybox-color.pdf
 INPUT ./Graphics//phybox-color.pdf
+INPUT Output/PhyboxReverseEngineering.bbl
+INPUT Output/PhyboxReverseEngineering.bbl
+INPUT Output/PhyboxReverseEngineering.bbl
+INPUT Output/PhyboxReverseEngineering.bbl
+INPUT ./Graphics//phybox-color.pdf
+INPUT ./Graphics//phybox-color.pdf
+INPUT Graphics//phybox-color.pdf
+INPUT ./Graphics//phybox-color.pdf
 INPUT Output/PhyboxReverseEngineering.aux
 INPUT Output/PhyboxReverseEngineering.out
 INPUT Output/PhyboxReverseEngineering.out

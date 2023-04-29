@@ -44,37 +44,31 @@
   <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>PhyboxReverseEngineering.aux</file>
-      <file>PhyboxReverseEngineering-blx.bib</file>
+      <file>PhyboxReverseEngineering.bcf</file>
     </provides>
     <requires type="dynamic">
       <file>PhyboxReverseEngineering.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
-      <file>apa.dbx</file>
       <file>blx-compat.def</file>
-      <file>blx-bibtex.def</file>
       <file>biblatex.def</file>
       <file>standard.bbx</file>
-      <file>apa.bbx</file>
-      <file>apa.cbx</file>
+      <file>numeric.bbx</file>
+      <file>numeric.cbx</file>
       <file>biblatex.cfg</file>
       <file>german.lbx</file>
-      <file>german-apa.lbx</file>
       <file>ngerman.lbx</file>
-      <file>ngerman-apa.lbx</file>
     </requires>
   </internal>
   <external package="biblatex" priority="5" active="1">
-    <generic>bibtex</generic>
+    <generic>biber</generic>
     <cmdline>
-      <binary>bibtex</binary>
-      <option>-min-crossrefs 999</option>
+      <binary>biber</binary>
       <infile>PhyboxReverseEngineering</infile>
     </cmdline>
     <input>
-      <file>PhyboxReverseEngineering.aux</file>
+      <file>PhyboxReverseEngineering.bcf</file>
     </input>
     <output>
       <file>PhyboxReverseEngineering.bbl</file>
@@ -83,13 +77,7 @@
       <file>PhyboxReverseEngineering.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>PhyboxReverseEngineering.aux</file>
-      <file>PhyboxReverseEngineering-blx.bib</file>
-    </requires>
-    <requires type="editable">
-    </requires>
-    <requires type="static">
-      <file>biblatex.bst</file>
+      <file>PhyboxReverseEngineering.bcf</file>
     </requires>
   </external>
 </requests>

@@ -4,7 +4,7 @@
 % Template: http://fiae.link/LaTeXVorlageFIAE
 %
 % License: Creative Commons 4.0 Attribution - Sharing under the same conditions
-% -----------------------------------------------------------------------------------------
+% ---------------------------------------aristotle:physicsaristotle:physics--------------------------------------------------
 
 
 \documentclass[
@@ -54,6 +54,7 @@
 \listoffigures
 \cleardoublepage
 
+% ------- Glossar -------
 \newcommand{\abkvz}{Glossar}
 \renewcommand{\nomname}{\abkvz}
 \section*{\abkvz}
@@ -65,5 +66,14 @@
 % ------- Content -------
 \pagenumbering{arabic}
 \input{Content.tex}
+
+
+% ------- Bibliography -------
+\nocite{PhyboxDidaktikChemie}
+
+\clearpage
+\renewcommand{\refname}{Literaturverzeichnis}
+\bibliography{Bibliography}
+\bibliographystyle{Core/natdin}
 
 \end{document}

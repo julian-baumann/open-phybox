@@ -1,6 +1,13 @@
 # Fdb version 3
-["pdflatex"] 1682427246 "/Users/turingmachine/Projects/open-phybox/documentation/synopsis/PhyboxReverseEngineering.tex" "Output/PhyboxReverseEngineering.pdf" "PhyboxReverseEngineering" 1682427249
-  "/Users/turingmachine/Projects/open-phybox/documentation/synopsis/PhyboxReverseEngineering.tex" 1682410684 1437 6e05379c92b3c66db382e8c2ff4806dc ""
+["bibtex Output/PhyboxReverseEngineering"] 1682498147 "Output/PhyboxReverseEngineering.aux" "Output/PhyboxReverseEngineering.bbl" "Output/PhyboxReverseEngineering" 1682498367
+  "./Core/natdin.bst" 1682496703 56395 45c62b58ffd510e4ff3fc6a7db195ea8 ""
+  "Bibliography.bib" 1682498113 422 4e7277f6973458a41edf986bb08d4b2a ""
+  "Output/PhyboxReverseEngineering.aux" 1682498367 9122 10fce92047a4c491337b80a1b342b401 "pdflatex"
+  (generated)
+  "Output/PhyboxReverseEngineering.bbl"
+  "Output/PhyboxReverseEngineering.blg"
+["pdflatex"] 1682498365 "/Users/turingmachine/Projects/open-phybox/documentation/synopsis/PhyboxReverseEngineering.tex" "Output/PhyboxReverseEngineering.pdf" "PhyboxReverseEngineering" 1682498367
+  "/Users/turingmachine/Projects/open-phybox/documentation/synopsis/PhyboxReverseEngineering.tex" 1682497512 1678 886e2926f2625871d15d9376177f42a0 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc" 1202520719 2327 9d6df24f9c4f7368395224341a95523a ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc" 1254269338 3031 6c4d3515bf7115d8518af1c9ab97ca44 ""
@@ -241,12 +248,12 @@
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1674551625 2826439 99d8d44643be986bfd154fea8efce0af ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
   "Abbreviations.tex" 1682410083 279 7b030243445966dbf8f8c593f7eda669 ""
-  "Chapters/FullReplacement.tex" 1682427246 5426 39c3793d29c07c1ca766c2268e9316fe ""
+  "Chapters/FullReplacement.tex" 1682498145 5432 cf3fd63be328f3a656b83dbb27615b60 ""
   "Chapters/Introduction.tex" 1682426868 2879 e8dfc7c48843ebed94baf8ca59e1a245 ""
-  "Chapters/ReverseEngineering.tex" 1681839761 6520 203697474c63e2d06a143c01b87dbe80 ""
+  "Chapters/ReverseEngineering.tex" 1682498364 6514 69cff8e5c2aaa0c3d5bdad95caba7a1e ""
   "Content.tex" 1681775199 132 7ce08db9fa7624603f051f3e81399f1b ""
   "Core/Commands.tex" 1672238337 386 4db3c4486ed2a7047074ba0abeba8546 ""
-  "Core/Packages.tex" 1682426793 1592 58993dd1cc15726dfa3ca7e2de342465 ""
+  "Core/Packages.tex" 1682496401 1632 0c7347f95d6d67321aa95308789f1c75 ""
   "Core/PageStyle.tex" 1682426824 1449 7c368ee9a39c8c190eb6f31762d796d4 ""
   "Cover.tex" 1682427159 887 16c836f1e57caed9f1274b5745e369c1 ""
   "Graphics//esp-system.pdf" 1678963370 163853 cde7627820de0a8d31383960d31cfd6e ""
@@ -262,11 +269,12 @@
   "Graphics//serial-monitor.png" 1681752738 121882 55eba3646383bdb8825a624190e7676c ""
   "Meta.tex" 1682427101 594 cdc9b721bf43eec6a1ad288b54978d85 ""
   "OpenSource.tex" 1681742206 296 7abf9db80f77363b10cd617296c2ae39 ""
-  "Output/PhyboxReverseEngineering.aux" 1682427248 8385 64209e490885d8fd7d01e75f6a1dfe8d "pdflatex"
-  "Output/PhyboxReverseEngineering.lof" 1682427248 367 309e7e2d5c49a0a030379f2b566c0aa8 "pdflatex"
+  "Output/PhyboxReverseEngineering.aux" 1682498367 9122 10fce92047a4c491337b80a1b342b401 "pdflatex"
+  "Output/PhyboxReverseEngineering.bbl" 1682498147 956 129b3e446755c50532821c1830559057 "bibtex Output/PhyboxReverseEngineering"
+  "Output/PhyboxReverseEngineering.lof" 1682498367 374 8492c2ec353a73dfd0c61970a29ff0c0 "pdflatex"
   "Output/PhyboxReverseEngineering.out" 0 -1 0 "pdflatex"
-  "Output/PhyboxReverseEngineering.toc" 1682427248 914 55137168b799793262c1cdf3aed6dd51 "pdflatex"
-  "PhyboxReverseEngineering.tex" 1682410684 1437 6e05379c92b3c66db382e8c2ff4806dc ""
+  "Output/PhyboxReverseEngineering.toc" 1682498367 992 0c50946b4e867d3da334e5b4af415a88 "pdflatex"
+  "PhyboxReverseEngineering.tex" 1682497512 1678 886e2926f2625871d15d9376177f42a0 ""
   "StatutoryDeclaration.tex" 1681742448 1126 5d092df5ab9af69ed452a881a83e7943 ""
   (generated)
   "Output/PhyboxReverseEngineering.aux"

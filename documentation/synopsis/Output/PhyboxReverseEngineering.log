@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.24)  25 APR 2023 14:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.24)  26 APR 2023 10:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1198,7 +1198,7 @@ LaTeX Warning: Hyper reference `acro:ESP32' on page II undefined on input line 4
 )
 File: Graphics//phybox-color.pdf Graphic file (type pdf)
 <use Graphics//phybox-color.pdf>
-Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 63.
+Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 64.
 (pdftex.def)             Requested size: 90.08633pt x 31.61804pt.
  [2
 
@@ -1206,7 +1206,7 @@ Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 63.
 ] (./Content.tex (./Chapters/Introduction.tex
 
 pdfTeX warning: pdflatex (file ./Graphics//experiment.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Graphics//experiment.pdf, id=113, 307.1475pt x 170.5572pt>
+<Graphics//experiment.pdf, id=119, 307.1475pt x 170.5572pt>
 File: Graphics//experiment.pdf Graphic file (type pdf)
 <use Graphics//experiment.pdf>
 Package pdftex.def Info: Graphics//experiment.pdf  used on input line 11.
@@ -1241,12 +1241,12 @@ Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 2.
 ] (./Chapters/ReverseEngineering.tex
 
 pdfTeX warning: pdflatex (file ./Graphics//reverse-engineering.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Graphics//reverse-engineering.pdf, id=167, 385.44pt x 258.0039pt>
+<Graphics//reverse-engineering.pdf, id=173, 385.44pt x 258.0039pt>
 File: Graphics//reverse-engineering.pdf Graphic file (type pdf)
 <use Graphics//reverse-engineering.pdf>
 Package pdftex.def Info: Graphics//reverse-engineering.pdf  used on input line 6.
 (pdftex.def)             Requested size: 290.22026pt x 194.26619pt.
-<Graphics//serial-monitor.png, id=172, 1306.8825pt x 802.49812pt>
+<Graphics//serial-monitor.png, id=178, 1306.8825pt x 802.49812pt>
 File: Graphics//serial-monitor.png Graphic file (type png)
 <use Graphics//serial-monitor.png>
 Package pdftex.def Info: Graphics//serial-monitor.png  used on input line 19.
@@ -1267,7 +1267,7 @@ File: Graphics//phybox-color.pdf Graphic file (type pdf)
 Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 27.
 (pdftex.def)             Requested size: 90.08633pt x 31.61804pt.
  [4 <./Graphics//serial-monitor.png>]
-<Graphics//serial-analyzer.png, id=223, 1548.78625pt x 1032.85875pt>
+<Graphics//serial-analyzer.png, id=229, 1548.78625pt x 1032.85875pt>
 File: Graphics//serial-analyzer.png Graphic file (type png)
 <use Graphics//serial-analyzer.png>
 Package pdftex.def Info: Graphics//serial-analyzer.png  used on input line 33.
@@ -1288,7 +1288,7 @@ Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 4.
 ] (./Chapters/FullReplacement.tex
 
 pdfTeX warning: pdflatex (file ./Graphics//esp-system.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Graphics//esp-system.pdf, id=237, 307.1475pt x 234.8775pt>
+<Graphics//esp-system.pdf, id=243, 307.1475pt x 234.8775pt>
 File: Graphics//esp-system.pdf Graphic file (type pdf)
 <use Graphics//esp-system.pdf>
 Package pdftex.def Info: Graphics//esp-system.pdf  used on input line 6.
@@ -1302,7 +1302,7 @@ Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 11.
 [7
 
  <./Graphics//esp-system.pdf>]
-<Graphics//phybox-documentation.pdf, id=277, 487.8225pt x 411.5375pt>
+<Graphics//phybox-documentation.pdf, id=284, 487.8225pt x 411.5375pt>
 File: Graphics//phybox-documentation.pdf Graphic file (type pdf)
 <use Graphics//phybox-documentation.pdf>
 Package pdftex.def Info: Graphics//phybox-documentation.pdf  used on input line 15.
@@ -1320,7 +1320,7 @@ Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 21.
  <./Graphics//phybox-documentation.pdf>]
 
 pdfTeX warning: pdflatex (file ./Graphics//open-phybox-comments.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Graphics//open-phybox-comments.pdf, id=291, 1497.67526pt x 567.07857pt>
+<Graphics//open-phybox-comments.pdf, id=301, 1497.67526pt x 567.07857pt>
 File: Graphics//open-phybox-comments.pdf Graphic file (type pdf)
 <use Graphics//open-phybox-comments.pdf>
 Package pdftex.def Info: Graphics//open-phybox-comments.pdf  used on input line 28.
@@ -1334,7 +1334,7 @@ Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 35.
  <./Graphics//open-phybox-comments.pdf>]
 
 pdfTeX warning: pdflatex (file ./Graphics//measurement-schema.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Graphics//measurement-schema.pdf, id=322, 350.26859pt x 76.3653pt>
+<Graphics//measurement-schema.pdf, id=332, 350.26859pt x 76.3653pt>
 File: Graphics//measurement-schema.pdf Graphic file (type pdf)
 <use Graphics//measurement-schema.pdf>
 Package pdftex.def Info: Graphics//measurement-schema.pdf  used on input line 45.
@@ -1342,7 +1342,7 @@ Package pdftex.def Info: Graphics//measurement-schema.pdf  used on input line 45
 
 
 pdfTeX warning: pdflatex (file ./Graphics//measurement-package.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Graphics//measurement-package.pdf, id=324, 1027.92026pt x 179.7114pt>
+<Graphics//measurement-package.pdf, id=334, 1027.92026pt x 179.7114pt>
 File: Graphics//measurement-package.pdf Graphic file (type pdf)
 <use Graphics//measurement-package.pdf>
 Package pdftex.def Info: Graphics//measurement-package.pdf  used on input line 54.
@@ -1350,11 +1350,23 @@ Package pdftex.def Info: Graphics//measurement-package.pdf  used on input line 5
 ))
 File: Graphics//phybox-color.pdf Graphic file (type pdf)
 <use Graphics//phybox-color.pdf>
-Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 69.
+Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 74.
 (pdftex.def)             Requested size: 90.08633pt x 31.61804pt.
  [10
 
- <./Graphics//measurement-schema.pdf> <./Graphics//measurement-package.pdf>] (Output/PhyboxReverseEngineering.aux)
+ <./Graphics//measurement-schema.pdf> <./Graphics//measurement-package.pdf>] (Output/PhyboxReverseEngineering.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 16--22
+\T1/lmtt/m/n/10.95 / / daten . didaktikchemie . uni-[]bayreuth . de / experimente / chembox / 0 _ download / phybox . pdf$[][]\T1/lmr/m/n/10.95 .
+ []
+
+)
+File: Graphics//phybox-color.pdf Graphic file (type pdf)
+<use Graphics//phybox-color.pdf>
+Package pdftex.def Info: Graphics//phybox-color.pdf  used on input line 79.
+(pdftex.def)             Requested size: 90.08633pt x 31.61804pt.
+ [11
+
+] (Output/PhyboxReverseEngineering.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1362,18 +1374,18 @@ Package rerunfilecheck Info: File `PhyboxReverseEngineering.out' has not changed
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30407 strings out of 478268
- 602072 string characters out of 5846347
+ 30426 strings out of 478268
+ 602476 string characters out of 5846347
  1025089 words of memory out of 5000000
- 47946 multiletter control sequences out of 15000+600000
+ 47957 multiletter control sequences out of 15000+600000
  549543 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,24n,108p,10702b,584s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on Output/PhyboxReverseEngineering.pdf (15 pages, 6441290 bytes).
+Output written on Output/PhyboxReverseEngineering.pdf (16 pages, 6444359 bytes).
 PDF statistics:
- 452 PDF objects out of 1000 (max. 8388607)
- 341 compressed objects within 4 object streams
- 51 named destinations out of 1000 (max. 500000)
- 164 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 474 PDF objects out of 1000 (max. 8388607)
+ 360 compressed objects within 4 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 
