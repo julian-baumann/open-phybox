@@ -3,7 +3,7 @@
     <h1 align="center">Open Phybox</h1>
 </p>
 
-A reimplementation of the Phybox educational expermiental box. The original Phybox only works with old operating systems such as Windows XP. This repository contains a firmware for a custom ESP-based build, that is compatible with the original Phybox measurement devices, but works with modern operating systems such as iPadOS.
+A re-implementation of the Phybox experiment box for the classroom. The original Phybox only works with legacy operating systems such as Windows XP. This repository contains firmware for a custom ESP-based build that is compatible with the original Phybox meters, but works with modern operating systems like iPadOS.
 
 ## Repository structure
 
@@ -20,7 +20,7 @@ A reimplementation of the Phybox educational expermiental box. The original Phyb
 
 ## Firmware
 
-The firmware for the `ESP32` is written in `C++` with the use of the Arduino framework using the `PlatformIO` integrations.
+The firmware for the `ESP32` is written in `C++` with the use of the Arduino framework using the `PlatformIO` toolchain.
 
 ## Hardware
 
