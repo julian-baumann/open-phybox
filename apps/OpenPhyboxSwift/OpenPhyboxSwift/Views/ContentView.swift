@@ -13,7 +13,7 @@ struct ContentView: View {
     @StateObject var measurementAnalyzer = MeasurementAnalyzer.shared
     
     @State var showCircleMarks = false
-    
+
     var body: some View {
         NavigationStack {
             if (peripheralCommunication.isPoweredOn) {
@@ -26,6 +26,13 @@ struct ContentView: View {
                                         x: .value("Time", dataPoint.time),
                                         y: .value("Voltage", dataPoint.voltageMeasurement)
                                     )
+                                    
+                                    AreaMark(
+                                        x: .value("Time", dataPoint.time),
+                                        y: .value("Voltage", dataPoint.voltageMeasurement)
+                                    )
+                                    .interpolationMethod(.catmullRom)
+                                    .foregroundStyle(Gradient(colors: [.blue.opacity(0.3), .clear]))
                                 }
                                 .symbol(.circle)
                                 .interpolationMethod(.catmullRom)
@@ -35,6 +42,13 @@ struct ContentView: View {
                                         x: .value("Time", dataPoint.time),
                                         y: .value("Voltage", dataPoint.voltageMeasurement)
                                     )
+                                    
+                                    AreaMark(
+                                        x: .value("Time", dataPoint.time),
+                                        y: .value("Voltage", dataPoint.voltageMeasurement)
+                                    )
+                                    .interpolationMethod(.catmullRom)
+                                    .foregroundStyle(Gradient(colors: [.blue.opacity(0.3), .clear]))
                                 }
                                 .interpolationMethod(.catmullRom)
                             }

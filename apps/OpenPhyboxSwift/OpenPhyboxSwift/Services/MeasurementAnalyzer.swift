@@ -16,6 +16,10 @@ class MeasurementAnalyzer: ObservableObject {
     private var activeMeasuring = false
     private var lastVoltageMeasurement = 0.0
     
+    private func isOverAverage(_ measurement: RawMeasurement) -> Bool {
+        return abs(measurement.voltageMeasurement - lastVoltageMeasurement) > 0.5
+    }
+    
     public func clear() {
         currentMeasurement = []
     }
