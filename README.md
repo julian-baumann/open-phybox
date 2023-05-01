@@ -5,6 +5,8 @@
 
 A re-implementation of the Phybox experiment box for the classroom. The original Phybox only works with legacy operating systems such as Windows XP. This repository contains firmware for a custom ESP-based build that is compatible with the original Phybox meters, but works with modern operating systems like iPadOS/macOS (or Windows 11 in the future).
 
+This project should be considered a proof-of-concept (for now). It was developed specifically to support the force meter and was not actually tested with any other measurement device.
+
 <p align="center">
     <img src="assets/screenshot-ipad.png" width="700" />
 </p>
