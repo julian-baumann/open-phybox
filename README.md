@@ -35,6 +35,8 @@ The firmware for the `ESP32` is written in `C++` with the use of the Arduino fra
 
 By using a 7-pin DIN connector, we can connect any original Phybox meter and measure its voltage with an external ADC chip. Since the Phybox devices need an operating voltage of `±15V`, a buck converter is used to convert the `5V` coming from the ESP to the required `±15V`.
 
+The voltage is regulated using a voltage divider. This voltage divider consist of a 27k Ohms and a 100k Ohms resistor.
+
 <p align="center">
     <img src="assets/open-phybox-schematic.png" width="1000" />
 </p>
