@@ -8,8 +8,9 @@ class MeasurementService
 public:
     MeasurementService();
 
-    static int16_t GetVoltageMeasurement(uint8_t GpioPin);
+    static double GetVoltageMeasurement();
+    static void CheckActiveMeasurement();
     static std::map<uint32_t, double> GetCurrentPartialMeasurement();
     static void MeasureCurrentVoltage();
-    static void onTimer();
+    static bool HasNewCompletedMeasurement();
 };
