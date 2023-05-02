@@ -1,0 +1,40 @@
+#######################################
+# Syntax Coloring Map For UrsAds1x15	
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+UrsAds1x15 KEYWORD1
+UrsAds1015 KEYWORD1
+UrsAds1115 KEYWORD1
+Ads1x15Mux KEYWORD1
+Ads1x15Gain KEYWORD1
+Ads1015Sps KEYWORD1
+Ads1115Sps KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+setGain KEYWORD2
+getGain KEYWORD2
+getMilliVoltsPerBit KEYWORD2
+getConversionDelay KEYWORD2
+getSamplesPerSeconds KEYWORD2
+readAdcRaw KEYWORD2
+readADCmV KEYWORD2
+startContinuousMode KEYWORD2
+stopContinuousMode KEYWORD2
+readContinuousModeRaw KEYWORD2
+isContinuousMode KEYWORD2
+setSps KEYWORD2
+getSps KEYWORD2
+getGainString KEYWORD2
+reset KEYWORD2
+setMaxSps KEYWORD2
+getType KEYWORD2
+setType KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

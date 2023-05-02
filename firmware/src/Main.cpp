@@ -29,16 +29,16 @@ void loop()
 {
     uint32_t currentMilliseconds = millis();
 
-    if (currentMilliseconds - lastMeasurementTime >= MEASURE_INTERVAL_MS)
-    {
-        lastMeasurementTime = currentMilliseconds;
-        MeasurementService::MeasureCurrentVoltage();
-    }
+    // if (currentMilliseconds - lastMeasurementTime >= MEASURE_INTERVAL_MS)
+    // {
+    //     lastMeasurementTime = currentMilliseconds;
+    //     MeasurementService::MeasureCurrentVoltage();
+    // }
 
-    if (currentMilliseconds - lastBleUpdateTime >= UPDATE_BLE_INTERVAL_MS)
-    {
-        lastBleUpdateTime = currentMilliseconds;
-        auto currentPartialMeasurement = MeasurementService::GetCurrentPartialMeasurement();
-        m_bleMeasurementService->UpdateValue(currentPartialMeasurement);
-    }
+    // if (currentMilliseconds - lastBleUpdateTime >= UPDATE_BLE_INTERVAL_MS)
+    // {
+    //     lastBleUpdateTime = currentMilliseconds;
+    //     auto currentPartialMeasurement = MeasurementService::GetCurrentPartialMeasurement();
+    //     m_bleMeasurementService->UpdateValue(currentPartialMeasurement);
+    // }
 }
