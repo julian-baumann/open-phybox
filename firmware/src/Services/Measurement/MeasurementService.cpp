@@ -4,7 +4,7 @@
 
 static Adafruit_ADS1115 ads;
 
-std::map<uint32_t, int32_t> CurrentPartialMeasurement;
+std::map<uint32_t, double> CurrentPartialMeasurement;
 double LastMeasurement = 0.0;
 uint32_t LastMeasurementTime = 0;
 bool MeasurementActive = false;
@@ -29,8 +29,9 @@ void MeasurementService::CheckActiveMeasurement()
 
     if (!MeasurementActive)
     {
-        if (currentMeasurement >= MEASUREMENT_THRESHOLD)
+        if (currentMeasurement >= MEASUREMENT_THRESHOLD && CurrentPartialMeasurement.empty())
         {
+            Serial.println("Start new Measurement");
             MeasurementActive = true;
             CurrentPartialMeasurement.insert({ LastMeasurementTime, LastMeasurement });
         }
@@ -38,6 +39,7 @@ void MeasurementService::CheckActiveMeasurement()
 
     if (MeasurementActive)
     {
+        Serial.println("Continouing Measurement");
         CurrentPartialMeasurement.insert({ millis(), currentMeasurement });
 
         if (currentMeasurement < MEASUREMENT_THRESHOLD)
@@ -47,6 +49,7 @@ void MeasurementService::CheckActiveMeasurement()
     }
 
     LastMeasurement = currentMeasurement;
+    LastMeasurementTime = millis();
 }
 
 bool MeasurementService::HasNewCompletedMeasurement()

@@ -44,7 +44,7 @@ void BleMeasurementService::UpdateValue(std::map<uint32_t, double>& currentParti
 
     for (uint16_t iteration = 0; iteration < iterationsNeeded; iteration++)
     {
-        MeasurementMessage data[BUFFER_SIZE];
+        std::vector<MeasurementMessage> data {};
 
         int newStartIndex = BUFFER_SIZE * iteration;
         auto currentChunkedMeasurementIterator = std::next(currentPartialMeasurement.begin(), newStartIndex);
@@ -62,19 +62,32 @@ void BleMeasurementService::UpdateValue(std::map<uint32_t, double>& currentParti
             uint8_t timeSpanSinceLastSample = valuePair.first - m_lastTimeStamp;
             m_lastTimeStamp = valuePair.first;
 
-            data[index] = {
+            data.push_back({
                     .time = timeSpanSinceLastSample,
                     .measurement = valuePair.second
-            };
+            });
 
             index++;
         }
 
-        m_measurement_characteristic.setValue(data);
+        const uint8_t* buffer = reinterpret_cast<const uint8_t*>(data.data());
+        size_t bufferSize = data.size() * sizeof(MeasurementMessage);
+
+        m_measurement_characteristic.setValue(buffer, bufferSize);
 
         if (m_measurement_characteristic.getSubscribedCount() > 0)
         {
             m_measurement_characteristic.notify();
         }
+    }
+
+
+    uint8_t done[1] {0x85};
+
+    m_measurement_characteristic.setValue(done);
+
+    if (m_measurement_characteristic.getSubscribedCount() > 0)
+    {
+        m_measurement_characteristic.notify();
     }
 }

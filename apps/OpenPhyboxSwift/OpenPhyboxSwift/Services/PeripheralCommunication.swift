@@ -21,6 +21,7 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
     @Published public var connected = false
     @Published public var connecting = false
     @Published public var connectedPeripheral: CBPeripheral?
+    @Published public var measurementCompleted: Bool = false
     
     override init() {
         super.init()
@@ -88,6 +89,21 @@ class PeripheralCommunication: NSObject, ObservableObject, CBCentralManagerDeleg
         }
         
         let rawByteArray = [UInt8](rawValue)
+        
+        
+        if rawByteArray.count == 1 {
+            if rawByteArray.first == 0x85 {
+                measurementCompleted = true
+                
+                return
+            }
+        }
+        
+        if measurementCompleted {
+            measurementAnalyzer.clear()
+            measurementCompleted = false
+        }
+        
         let chunked = rawByteArray.chunked(into: 9)
         
         for chunk in chunked {
